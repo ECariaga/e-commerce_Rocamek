@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+  margin: 0 auto;
+  text-transform: uppercase;
+}
+
+/* Estilos para el navbar en pantallas grandes */
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.navbar a:hover {
+  color: #ccc;
+  transition: 0.3s;
+}
+
+.navbar a::after {
+  content: ""; /* Necesario para crear el pseudo-elemento */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px; /* Grosor de la línea */
+  background-color: #ccc; /* Color de la línea */
+  transform: scaleX(0); /* Inicialmente oculta */
+  transition: transform 0.3s; /* Transición suave */
+}
+
+.navbar a:hover::after {
+  transform: scaleX(1); /* Muestra la línea al hacer hover */
+}
+
+/* Ícono del menú para pantallas pequeñas */
+.menu_icon {
+  display: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+.close_icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+  margin-top: 10px;
+}
+/* Media Queries */
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+  .navbar {
+    justify-content: center;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .navbar {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0; /* Ajustar según la altura del header */
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #181818;
+    z-index: 10;
+  }
+  .menu_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar.active {
+    display: flex; /* Mostrar el menú al hacer clic en el ícono */
+  }
+}

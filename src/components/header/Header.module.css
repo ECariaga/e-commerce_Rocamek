@@ -1,0 +1,206 @@
+.header {
+  width: 100%;
+  background-color: #181818;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.header_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 20px 10px 20px;
+}
+.header_top_logo {
+  display: flex;
+  align-items: center;
+}
+.header_logo {
+  color: #fff;
+  text-decoration: none;
+  font-family: "sansation-light";
+  font-size: 40px;
+}
+.header_top_search {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+.header_top_navigation {
+  display: flex;
+  align-items: center;
+}
+.search_container {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  border-radius: 20px;
+  padding: 5px 10px;
+  transition: width 0.3s ease;
+}
+
+.search_container:hover {
+  background-color: #ccc; /* Cambia el color al hacer hover */
+  transition: 0.3s;
+}
+
+.search_container:hover .search_input::placeholder {
+  color: #333; /* Cambia el color del texto del input al hacer hover en el contenedor */
+}
+.search_container.expanded {
+  width: 100%; /* Expande la barra de búsqueda al 100% */
+}
+.search_input:hover {
+  color: #333;
+}
+
+.search_input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #fff;
+  padding: 5px;
+  font-size: 14px;
+  flex-grow: 1;
+}
+
+.search_input::placeholder {
+  color: #ccc;
+}
+
+.search_button {
+  background-color: transparent;
+  border: none;
+  color: #fff; /* Color del ícono */
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close_button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link_container {
+  display: flex;
+  align-items: center;
+  font-size: 100%;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  margin-inline: 0;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.icon {
+  font-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header_top_navbar {
+  display: none;
+}
+.header_botton {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 10px 0;
+}
+.header_botton_navbar {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+/* Media Queries */
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+  .header_logo {
+    font-size: 30px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .search_input {
+    display: none;
+  }
+  .search_input::placeholder {
+    color: transparent;
+  }
+  .search_container:hover {
+    color: transparent; /* Cambia el color del texto del input al hacer hover en el contenedor */
+  }
+  .search_container {
+    width: 20px; /* Ancho reducido en pantallas pequeñas */
+    justify-content: center;
+    align-items: center;
+    transition: width 0.3s ease;
+    background-color: #181818;
+  }
+
+  .search_container:focus-within {
+    width: 100%; /* Ancho completo cuando se hace clic en el input */
+  }
+
+  .search_input {
+    display: block;
+    width: 100%; /* Ancho completo cuando se hace clic */
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #fff;
+    padding: 5px;
+    font-size: 14px;
+    transition: width 0.3s ease;
+  }
+  .header_logo {
+    font-size: 25px;
+  }
+  .header_botton_navbar {
+    display: none;
+  }
+  .header_top_navigation {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .header_top_search {
+    margin-right: 0;
+  }
+
+  .header_top_navigation > .link_container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .header_top_navigation > :last-child {
+    margin-left: 10px; /* Espaciado entre el Navbar y los iconos */
+  }
+
+  .header_top_navbar {
+    display: flex;
+    align-items: center;
+  }
+}
