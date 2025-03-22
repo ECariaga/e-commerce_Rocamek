@@ -1,0 +1,22 @@
+.buttonDesign {
+  border: 0;
+  border-radius: 100px;
+  padding: 16px 30px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 1.5vw;
+  background: #f8b363;
+  transition: 0.3s ease background-color;
+}
+
+.buttonDesign:hover {
+  opacity: 0.8;
+  box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 700px) and (min-width: 320px) {
+  .buttonDesign {
+    font-size: 12px;
+    padding: 10px 20px;
+  }
+}

@@ -1,8 +1,42 @@
 body {
   margin: 0;
   min-width: 320px;
+  height: 100vh;
   min-height: 100vh;
-  font-family: Montserrat;
+  font-family: "Montserrat";
+  background-color: #efe6d9;
+}
+
+p {
+  font-size: 1.5vw;
+}
+
+h1 {
+  font-family: "BebasNeue";
+  font-weight: 100;
+  font-size: 4vw;
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+}
+
+h2 {
+  font-family: "BebasNeue";
+  font-weight: 100;
+  font-size: 3vw;
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+}
+
+@media (max-width: 700px) and (min-width: 320px) {
+  h1 {
+    font-size: 35px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 13px;
+  }
 }
 
 @font-face {
@@ -13,4 +47,8 @@ body {
 @font-face {
   font-family: "sansation-light";
   src: url(/fonts/sansation-light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "BebasNeue";
+  src: url(/fonts/BebasNeue-Regular.ttf) format("truetype");
 }

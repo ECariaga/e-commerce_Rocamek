@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Navbar.module.css";
+import styles from "./NavBar.module.css";
 import { IoMenuSharp } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { Outlet, Link } from "react-router-dom";

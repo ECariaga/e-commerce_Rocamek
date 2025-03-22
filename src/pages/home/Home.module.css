@@ -1,0 +1,142 @@
+.contentContainer {
+  margin: 10%;
+}
+
+.heroImage {
+  display: flex;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/src/assets/images/hero.jpg");
+  height: 80vh;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 100px;
+  color: white;
+}
+
+.heroText p {
+  font-size: 2vw;
+  margin-block-start: 0.2em;
+  margin-block-end: 1em;
+}
+
+.categoryTextSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: #181818;
+  transition: width 0.3s ease;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.cardsCategories {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.productsSection,
+.offersSection {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  margin-top: 40px;
+  align-items: center;
+  justify-items: center;
+  background: #fff;
+}
+
+.productImg {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.featuredProducts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  justify-content: space-between;
+  max-width: 800px;
+  width: 100%;
+}
+.productsOnSale {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.aboutSection {
+  display: flex;
+  align-items: center;
+  margin: 50px 0;
+  background: #fff;
+}
+.aboutImg {
+  width: 40%;
+  max-height: 600px;
+  object-fit: cover;
+}
+.aboutContent {
+  flex-direction: column;
+  margin: 30px;
+  row-gap: 20px;
+}
+
+/*Movile screen*/
+@media (max-width: 700px) and (min-width: 320px) {
+  .heroText {
+    margin: auto;
+  }
+
+  .heroText p {
+    font-size: 20px;
+    margin-block-start: 0.2em;
+    margin-block-end: 1em;
+  }
+  .gridContainer {
+    display: flex;
+    margin-top: 40px;
+    background: transparent;
+  }
+  .productImg {
+    display: none;
+  }
+  .featuredProducts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  .productsOnSale {
+    width: 100%;
+  }
+  .aboutImg {
+    display: none;
+  }
+}

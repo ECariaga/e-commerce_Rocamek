@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import Navbar from "../navbar/Navbar";
+import NavBar from "../navbar/NavBar";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi2";
@@ -54,7 +54,7 @@ function Header() {
                   {/* icono de usuario */}
                 </a>
                 <div className={styles.header_top_navbar}>
-                  <Navbar />
+                  <NavBar />
                 </div>
               </div>
             )}
@@ -63,7 +63,7 @@ function Header() {
       </section>
       <section className={styles.header_botton}>
         <section className={styles.header_botton_navbar}>
-          <Navbar />
+          <NavBar />
         </section>
       </section>
     </section>
