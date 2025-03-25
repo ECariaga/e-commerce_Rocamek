@@ -58,12 +58,12 @@ function Footer() {
             <FaPhone className={styles.icon} /> 123456789
           </p>
         </div>
-        <div className={styles.footer_section}>
+        <div className={`${styles.footer_section} ${styles.centered}`}>
           <h3>Síguenos</h3>
-          <p className={styles.social_network}>
-            <FaFacebook className={styles.icon} />{" "}
-            <FaInstagram className={styles.icon} />
-          </p>
+          <div className={styles.social_network}>
+            <FaFacebook />
+            <FaInstagram />
+          </div>
         </div>
       </div>
       <div className={styles.riReserved}>

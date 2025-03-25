@@ -43,13 +43,28 @@ li {
 .footer_section a:hover {
   text-decoration: underline;
 }
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
 .social_network {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+  gap: 20px;
+}
+.social_network svg {
+  font-size: 1.2rem;
 }
 .icon {
   font-size: 1.2rem; /* Ajusta el tamaño de los íconos */
-  margin-right: 5px;
+  margin-right: 10px;
+  min-width: 15px;
 }
 
 .riReserved {
