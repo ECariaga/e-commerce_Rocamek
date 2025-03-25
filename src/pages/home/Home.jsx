@@ -26,6 +26,33 @@ const categories = [
   },
 ];
 
+const products = [
+  {
+    urlImage: "./src/assets/images/bracelet.jpg",
+    title: "Paracord Bracelet",
+    price: "$5.000",
+    category: "accesorios",
+  },
+  {
+    urlImage: "./src/assets/images/bracelet.jpg",
+    title: "Paracord Bracelet",
+    price: "$5.000",
+    category: "accesorios",
+  },
+  {
+    urlImage: "./src/assets/images/bracelet.jpg",
+    title: "Paracord Bracelet",
+    price: "$5.000",
+    category: "accesorios",
+  },
+  {
+    urlImage: "./src/assets/images/bracelet.jpg",
+    title: "Paracord Bracelet",
+    price: "$5.000",
+    category: "accesorios",
+  },
+];
+
 function Home() {
   let navigate = useNavigate(); //Para navegar a otras rutas
   return (
@@ -74,52 +101,18 @@ function Home() {
                 alt=""
               />
               <div className={styles.featuredProducts}>
-                <ProductCard
-                  urlImage={"./src/assets/images/bracelet.jpg"}
-                  title={"Paracord Bracelet Isolated On White"}
-                  price={"$5.000"}
-                />
-                <ProductCard
-                  urlImage={"./src/assets/images/bracelet.jpg"}
-                  title={"Paracord Bracelet Isolated On White"}
-                  price={"$5.000"}
-                />
-                <ProductCard
-                  urlImage={"./src/assets/images/bracelet.jpg"}
-                  title={"Paracord Bracelet Isolated On White"}
-                  price={"$5.000"}
-                />
-                <ProductCard
-                  urlImage={"./src/assets/images/bracelet.jpg"}
-                  title={"Paracord Bracelet Isolated On White"}
-                  price={"$5.000"}
-                />
+                {products.map((product, index) => (
+                  <ProductCard key={index} product={product} />
+                ))}
               </div>
             </div>
           </section>
           <section className={styles.offersSection}>
             <h2>Ofertas y Promociones</h2>
             <div className={styles.productsOnSale}>
-              <ProductCard
-                urlImage={"./src/assets/images/bracelet.jpg"}
-                title={"Paracord Bracelet Isolated On White"}
-                price={"$5.000"}
-              />
-              <ProductCard
-                urlImage={"./src/assets/images/bracelet.jpg"}
-                title={"Paracord Bracelet Isolated On White"}
-                price={"$5.000"}
-              />
-              <ProductCard
-                urlImage={"./src/assets/images/bracelet.jpg"}
-                title={"Paracord Bracelet Isolated On White"}
-                price={"$5.000"}
-              />
-              <ProductCard
-                urlImage={"./src/assets/images/bracelet.jpg"}
-                title={"Paracord Bracelet Isolated On White"}
-                price={"$5.000"}
-              />
+              {products.map((product, index) => (
+                <ProductCard key={index} product={product} />
+              ))}
             </div>
           </section>
           <section className={styles.aboutSection}>

@@ -1,15 +1,15 @@
 import styles from "./ProductCard.module.css";
 
-function ProductCard({ urlImage, title, price }) {
+function ProductCard({ product }) {
   return (
-    <div className={styles.card}>
+    <div className={styles.card} data-category={product.category}>
       <img
-        src={`${urlImage}`}
+        src={`${product.urlImage}`}
         className={styles.cardImg}
-        alt="Imagen-producto"
+        alt={product.title}
       />
-      <p className={styles.cardTitle}>{title}</p>
-      <p className={styles.cardPrice}>{price}</p>
+      <p className={styles.cardTitle}>{product.title}</p>
+      <p className={styles.cardPrice}>{product.price}</p>
     </div>
   );
 }
