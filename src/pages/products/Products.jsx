@@ -1,59 +1,23 @@
 import styles from "./Products.module.css";
 import ProductCard from "../../components/productCard/ProductCard";
 import Footer from "../../components/footer/Footer";
+import { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
-const products = [
-  {
-    urlImage: "./src/assets/images/bracelet.jpg",
-    title: "Paracord Bracelet",
-    price: "$5.000",
-    category: "accesorios",
-  },
-  {
-    urlImage: "./src/assets/images/bracelet.jpg",
-    title: "Paracord Bracelet",
-    price: "$5.000",
-    category: "accesorios",
-  },
-  {
-    urlImage: "./src/assets/images/bracelet.jpg",
-    title: "Paracord Bracelet",
-    price: "$5.000",
-    category: "accesorios",
-  },
-  {
-    urlImage: "./src/assets/images/bracelet.jpg",
-    title: "Paracord Bracelet",
-    price: "$5.000",
-    category: "accesorios",
-  },
-
-  {
-    urlImage: "./src/assets/images/bracelet.jpg",
-    title: "Paracord Bracelet",
-    price: "$5.000",
-    category: "accesorios",
-  },
-  {
-    urlImage: "./src/assets/images/bracelet_1.jpg",
-    title: "Survival Bracelet",
-    price: "$6.500",
-    category: "supervivencia",
-  },
-  {
-    urlImage: "./src/assets/images/bracelet_1.jpg",
-    title: "Survival Bracelet",
-    price: "$6.500",
-    category: "supervivencia",
-  },
-  {
-    urlImage: "./src/assets/images/bracelet_1.jpg",
-    title: "Survival Bracelet",
-    price: "$6.500",
-    category: "supervivencia",
-  },
-];
 const Products = () => {
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    const productsRef = collection(db, "products");
+
+    getDocs(productsRef).then((resp) => {
+      setProduct(
+        resp.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        })
+      );
+    });
+  }, []);
   return (
     <>
       <div className={styles.productContainer}>
@@ -64,8 +28,8 @@ const Products = () => {
         </div>
         <div className={styles.contentContainer}>
           <div className={styles.gridContainer}>
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
+            {product.map((prod) => (
+              <ProductCard key={prod.id} product={prod} />
             ))}
           </div>
         </div>
