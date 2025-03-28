@@ -1,6 +1,5 @@
 import styles from "./Products.module.css";
 import ProductCard from "../../components/productCard/ProductCard";
-import Footer from "../../components/footer/Footer";
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
@@ -33,8 +32,6 @@ const Products = () => {
             ))}
           </div>
         </div>
-
-        <Footer />
       </div>
     </>
   );

@@ -5,7 +5,6 @@ import { Outlet, Link, useNavigate } from "react-router-dom";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import ProductCard from "../../components/productCard/ProductCard";
 import Testimonials from "../../components/testimonials/Testimonials";
-import Footer from "../../components/footer/Footer";
 
 const categories = [
   {
@@ -146,7 +145,6 @@ function Home() {
             <Testimonials />
           </section>
         </div>
-        <Footer />
       </div>
     </>
   );
