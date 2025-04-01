@@ -6,6 +6,7 @@ import Products from "./pages/products/Products";
 import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
 import Category from "./pages/category/Category";
+import ProductDetail from "./components/productDetail/ProductDetail";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/categories" element={<Category />}></Route>
+          <Route path="/item/:id" element={<ProductDetail />}></Route>
         </Routes>
         <Footer />
       </Router>

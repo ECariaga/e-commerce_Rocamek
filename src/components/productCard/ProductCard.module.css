@@ -25,3 +25,13 @@
   transition: filter 0.3s ease;
   transform: scale(1.02);
 }
+
+.oldPrice {
+  text-decoration: line-through;
+  color: #6d6d6d;
+  margin-left: 15px;
+  font-size: 1vw;
+}
+.discountPrice {
+  color: #b22222;
+}
