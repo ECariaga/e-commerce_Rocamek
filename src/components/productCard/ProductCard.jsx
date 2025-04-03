@@ -19,18 +19,22 @@ function ProductCard({ product }) {
         className={styles.cardImg}
         alt={product.title}
       />
-      <p className={styles.cardTitle}>{product.title}</p>
+      <div className={styles.content}>
+        <p className={styles.cardTitle}>{product.title}</p>
 
-      {product.discountPrice ? (
-        <p className={styles.cardPrice}>
-          <span className={styles.discountPrice}>
-            {formatPrice(product.discountPrice)}
-          </span>
-          <span className={styles.oldPrice}>{formatPrice(product.price)}</span>
-        </p>
-      ) : (
-        <p className={styles.cardPrice}>{formatPrice(product.price)}</p>
-      )}
+        {product.discountPrice ? (
+          <p className={styles.cardPrice}>
+            <span className={styles.discountPrice}>
+              {formatPrice(product.discountPrice)}
+            </span>
+            <span className={styles.oldPrice}>
+              {formatPrice(product.price)}
+            </span>
+          </p>
+        ) : (
+          <p className={styles.cardPrice}>{formatPrice(product.price)}</p>
+        )}
+      </div>
 
       <Link to={`/item/${product.id}`}>
         <Button text={"Ver más"} />

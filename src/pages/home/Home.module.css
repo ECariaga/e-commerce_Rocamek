@@ -1,6 +1,8 @@
 .contentContainer {
-  margin: 10%;
+  margin: 5% 10% 10% 10%;
 }
+
+/*SECCION DE HERO */
 
 .heroImage {
   display: flex;
@@ -28,6 +30,8 @@
   margin-block-end: 1em;
 }
 
+/*SECCION DE CATEGORIAS */
+
 .categoryTextSection {
   display: flex;
   justify-content: space-between;
@@ -54,39 +58,80 @@
   gap: 20px;
 }
 
+/*SECCION DE PRODUCTOS */
+.toggleButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border: 1px solid #181818;
+  border-radius: 50px;
+  max-width: 300px;
+  height: 40px;
+  margin: auto;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f0f0f0;
+}
+.discountSide,
+.featuredSide {
+  width: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.discountSide p,
+.featuredSide p {
+  font-size: 15px;
+}
+
+.selector {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  border-radius: 50px;
+  background: #181818;
+  transition: transform 0.3s ease-in-out;
+}
+
+.left {
+  transform: translateX(0);
+}
+
+.right {
+  transform: translateX(100%);
+}
+
+/* Color del texto cuando está activo */
+.activeText {
+  color: #fff;
+}
+
+/* Color del texto cuando está inactivo */
+.inactiveText {
+  color: #000;
+}
+
+.sliderContainer {
+  display: block;
+  height: 100%;
+  width: 100%;
+  margin: 40px 20px 50px 20px;
+}
+
 .productsSection,
 .offersSection {
   text-align: center;
   margin-top: 30px;
 }
 
-.gridContainer {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  margin-top: 40px;
-  align-items: center;
-  justify-items: center;
-  background: #fff;
-}
+/*SECCION DE OFERTAS */
 
-.productImg {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.featuredProducts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 10px;
-  justify-content: space-between;
-  max-width: 800px;
-  width: 100%;
-}
 .productsOnSale {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
 }
@@ -119,19 +164,9 @@
     margin-block-start: 0.2em;
     margin-block-end: 1em;
   }
-  .gridContainer {
-    display: flex;
-    margin-top: 40px;
-    background: transparent;
-  }
-  .productImg {
-    display: none;
-  }
-  .featuredProducts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    justify-content: center;
+  .discountSide p,
+  .featuredSide p {
+    font-size: 10px;
   }
   .productsOnSale {
     width: 100%;

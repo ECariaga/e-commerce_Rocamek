@@ -1,37 +1,86 @@
 .card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: 20px 0px;
+  padding: 20px;
   border-radius: 12px;
-  max-width: 350px;
   background-color: white;
+
+  /* Tamaño adaptable */
+  width: 100%;
+  max-width: 300px;
+  min-width: 220px;
+  height: auto;
+  max-height: 450px;
+  min-height: 350px;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .cardImg {
   width: 100%;
   height: auto;
-  margin-bottom: 10px;
+  max-height: 210px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+}
+.cardTitle {
+  font-size: 1rem; /* Se adapta al tamaño de pantalla */
+  font-weight: bold;
+  white-space: nowrap; /* Evita que el texto se expanda */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Agrega "..." si el texto es muy largo */
+  max-width: 90%;
 }
 
 .cardPrice {
   font-weight: bold;
+  font-size: 1.1rem;
+  margin: 5px 0;
 }
 
 .card:hover {
-  filter: brightness(0.9); /* Reduce el brillo, oscureciendo la card */
-  transition: filter 0.3s ease;
+  filter: brightness(0.9);
+  transition: filter 0.3s ease, transform 0.3s ease;
   transform: scale(1.02);
 }
 
+/* Precios */
 .oldPrice {
   text-decoration: line-through;
   color: #6d6d6d;
-  margin-left: 15px;
-  font-size: 1vw;
+  margin-left: 10px;
+  font-size: 0.9rem;
 }
 .discountPrice {
   color: #b22222;
+}
+
+/* Botón alineado al final */
+.card a {
+  margin-top: auto;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 90%;
+    min-height: 320px;
+  }
+
+  .cardImg {
+    max-height: 150px;
+  }
 }
