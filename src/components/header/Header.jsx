@@ -5,12 +5,26 @@ import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi2";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+//import useProducts from "../../hooks/useProducts";
 
 function Header() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
   const toggleSearch = () => {
     setIsSearchExpanded(!isSearchExpanded);
+    setSearchQuery(""); //Reinicia la busqueda al cerrar
   };
+
+  const handleSearch = () => {
+    if (searchQuery.trim() === "") {
+      return;
+    }
+    navigate(`/search?q=${encodeURIComponent(searchQuery)}`); // Redirige con el término de búsqueda
+  };
+
   return (
     <section className={styles.header}>
       <section className={styles.header_top}>
@@ -31,6 +45,9 @@ function Header() {
                   type="text"
                   className={styles.search_input}
                   placeholder="Buscar"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 />
               )}
               <button className={styles.search_button} onClick={toggleSearch}>

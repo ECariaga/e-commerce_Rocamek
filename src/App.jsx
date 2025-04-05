@@ -8,6 +8,7 @@ import Contact from "./pages/contact/Contact";
 import Category from "./pages/category/Category";
 import ProductDetail from "./components/productDetail/ProductDetail";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SearchResults from "./pages/searchResults/SearchResults";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/categories" element={<Category />}></Route>
           <Route path="/item/:id" element={<ProductDetail />}></Route>
+          <Route path="/search" element={<SearchResults />}></Route>
         </Routes>
         <Footer />
       </Router>

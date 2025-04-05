@@ -1,0 +1,18 @@
+.searchResultsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.searchResultsContainer h2 {
+  margin-top: 30px;
+}
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+  justify-content: center;
+  margin: 30px;
+}
