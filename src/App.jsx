@@ -7,6 +7,7 @@ import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
 import Category from "./pages/category/Category";
 import ProductDetail from "./components/productDetail/ProductDetail";
+import ProductsByCategory from "./components/productsByCategory/ProductsByCategory";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SearchResults from "./pages/searchResults/SearchResults";
 
@@ -23,6 +24,10 @@ function App() {
           <Route path="/categories" element={<Category />}></Route>
           <Route path="/item/:id" element={<ProductDetail />}></Route>
           <Route path="/search" element={<SearchResults />}></Route>
+          <Route
+            path="/products-by-category/:categoryName"
+            element={<ProductsByCategory />}
+          />
         </Routes>
         <Footer />
       </Router>
