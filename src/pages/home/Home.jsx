@@ -10,26 +10,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useProducts from "../../hooks/useProducts";
+import useCategories from "../../hooks/useCategories";
 import useDiscountedProducts from "../../hooks/useDiscountedProducts";
-
-const categories = [
-  {
-    urlImage: "./src/assets/images/category.jpg",
-    nameCategory: "Cuchillos",
-  },
-  {
-    urlImage: "./src/assets/images/category.jpg",
-    nameCategory: "Paracord",
-  },
-  {
-    urlImage: "./src/assets/images/category.jpg",
-    nameCategory: "Mochilas",
-  },
-  {
-    urlImage: "./src/assets/images/category.jpg",
-    nameCategory: "Gorros",
-  },
-];
 
 const settings = {
   className: "center",
@@ -45,6 +27,7 @@ function Home() {
   let navigate = useNavigate(); //Para navegar a otras rutas
   const [isDiscount, setIsDiscount] = useState(true);
   const { products, loading, error } = useProducts(); //Para obtener los productos desde Firebase
+  const { categories, loadingCategories, errorCategories } = useCategories();
   const {
     products: discountedProducts,
     loading: loadingDiscounts,
@@ -130,15 +113,19 @@ function Home() {
             </div>
 
             <div className={styles.cardsCategories}>
-              {categories.map(({ urlImage, nameCategory }) => {
-                return (
-                  <Categories
-                    key={nameCategory} //Lo ideal es que sea una kay unica
-                    urlImage={urlImage}
-                    nameCategory={nameCategory}
-                  />
-                );
-              })}
+              {loadingCategories ? (
+                <p>Cargando categorias...</p>
+              ) : errorCategories ? (
+                <p>Error al cargar las categorias</p>
+              ) : categories.length > 0 ? (
+                categories
+                  .slice(0, 4)
+                  .map((category) => (
+                    <Categories key={category.id} category={category} />
+                  ))
+              ) : (
+                <p> No hay categorias disponibles</p>
+              )}
             </div>
           </section>
           <section className={styles.offersSection}>

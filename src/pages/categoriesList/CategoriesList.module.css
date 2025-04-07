@@ -1,0 +1,17 @@
+.listContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  width: 90%;
+  height: 100%;
+  gap: 20px;
+}
+
+.listContainer div {
+  margin: 20px 0 20px 0;
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 300px;
+  max-height: 300px;
+}

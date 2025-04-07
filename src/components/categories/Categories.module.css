@@ -33,7 +33,10 @@
   z-index: 1;
   border-radius: inherit;
 }
-
+.cardCategories:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.02);
+}
 .cardCategories:hover::before {
   background-color: rgba(0, 0, 0, 0.6);
   transition: transform 0.3s; /* Transición suave */

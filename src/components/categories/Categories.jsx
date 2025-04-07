@@ -1,11 +1,11 @@
 import styles from "./Categories.module.css";
 
-function Categories({ urlImage, nameCategory }) {
+function Categories({ category }) {
   return (
     <div className={styles.cardCategories}>
-      <img className={styles.cardImg} src={`${urlImage}`} alt="" />
+      <img className={styles.cardImg} src={`${category.imageURL}`} alt="" />
       <div className={styles.cardText}>
-        <p>{nameCategory}</p>
+        <p>{category.name}</p>
       </div>
     </div>
   );
