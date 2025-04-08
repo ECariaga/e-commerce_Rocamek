@@ -1,7 +1,7 @@
 import styles from "./Home.module.css";
 import Button from "../../components/button/Button";
 import Categories from "../../components/categories/Categories";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import ProductCard from "../../components/productCard/ProductCard";
@@ -9,9 +9,8 @@ import Testimonials from "../../components/testimonials/Testimonials";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import useProducts from "../../hooks/useProducts";
-import useCategories from "../../hooks/useCategories";
-import useDiscountedProducts from "../../hooks/useDiscountedProducts";
+import { ProductsContext } from "../../context/ProductsContext";
+import { CategoriesContext } from "../../context/CategoriesContext";
 
 const settings = {
   className: "center",
@@ -24,19 +23,26 @@ const settings = {
 };
 
 function Home() {
-  let navigate = useNavigate(); //Para navegar a otras rutas
+  let navigate = useNavigate(); // Para navegar a otras rutas
   const [isDiscount, setIsDiscount] = useState(true);
-  const { products, loading, error } = useProducts(); //Para obtener los productos desde Firebase
-  const { categories, loadingCategories, errorCategories } = useCategories();
+
+  // Consumir datos de productos desde el contexto
   const {
-    products: discountedProducts,
-    loading: loadingDiscounts,
-    error: errorDiscounts,
-  } = useDiscountedProducts();
+    products,
+    loading: loadingProducts,
+    error: errorProducts,
+  } = useContext(ProductsContext);
+
+  // Consumir datos de categorías desde el contexto
+  const {
+    categories,
+    loading: loadingCategories,
+    error: errorCategories,
+  } = useContext(CategoriesContext);
 
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  //Filtrar productos segun el boton seleccionado
+  // Filtrar productos según el botón seleccionado
   useEffect(() => {
     if (products.length > 0) {
       const filtered = isDiscount
@@ -89,10 +95,10 @@ function Home() {
             </div>
             <div className={styles.sliderContainer}>
               <Slider {...settings}>
-                {loading ? (
-                  <p>Cargando productos en oferta...</p>
-                ) : error ? (
-                  <p>Error al cargar productos en oferta</p>
+                {loadingProducts ? (
+                  <p>Cargando productos...</p>
+                ) : errorProducts ? (
+                  <p>Error al cargar productos</p>
                 ) : filteredProducts.length > 0 ? (
                   filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
@@ -114,9 +120,9 @@ function Home() {
 
             <div className={styles.cardsCategories}>
               {loadingCategories ? (
-                <p>Cargando categorias...</p>
+                <p>Cargando categorías...</p>
               ) : errorCategories ? (
-                <p>Error al cargar las categorias</p>
+                <p>Error al cargar las categorías</p>
               ) : categories.length > 0 ? (
                 categories
                   .slice(0, 4)
@@ -124,19 +130,19 @@ function Home() {
                     <Categories key={category.id} category={category} />
                   ))
               ) : (
-                <p> No hay categorias disponibles</p>
+                <p>No hay categorías disponibles</p>
               )}
             </div>
           </section>
           <section className={styles.offersSection}>
             <h2>Ofertas y Promociones</h2>
             <div className={styles.productsOnSale}>
-              {loadingDiscounts ? (
+              {loadingProducts ? (
                 <p>Cargando productos en oferta...</p>
-              ) : errorDiscounts ? (
+              ) : errorProducts ? (
                 <p>Error al cargar productos en oferta</p>
-              ) : discountedProducts.length > 0 ? (
-                discountedProducts.map((product) => (
+              ) : filteredProducts.length > 0 ? (
+                filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))
               ) : (

@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
-import useProducts from "../../hooks/useProducts";
+import { useContext } from "react";
+import { ProductsContext } from "../../context/ProductsContext";
 import ProductCard from "../productCard/ProductCard";
 import styles from "./ProductsByCategory.module.css";
 
 const ProductsByCategory = () => {
   const { categoryName } = useParams();
-  const { products, loading, error } = useProducts();
+  const { products, loading, error } = useContext(ProductsContext);
 
   const filteredProducts = products.filter(
     (product) => product.category === categoryName

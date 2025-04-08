@@ -1,33 +1,25 @@
 import styles from "./Products.module.css";
 import ProductCard from "../../components/productCard/ProductCard";
-import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/config";
+import { useContext } from "react";
+import { ProductsContext } from "../../context/ProductsContext";
 
 const Products = () => {
-  const [product, setProduct] = useState([]);
-  useEffect(() => {
-    const productsRef = collection(db, "products");
+  const { products, loading, error } = useContext(ProductsContext);
 
-    getDocs(productsRef).then((resp) => {
-      setProduct(
-        resp.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id };
-        })
-      );
-    });
-  }, []);
+  if (loading) return <p>Cargando productos...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <>
       <div className={styles.productContainer}>
         <div className={styles.heroProducts}>
           <div className={styles.heroText}>
-            <h1>Brazaletes Paracord</h1>
+            <h1>Todos los productos</h1>
           </div>
         </div>
         <div className={styles.contentContainer}>
           <div className={styles.gridContainer}>
-            {product.map((prod) => (
+            {products.map((prod) => (
               <ProductCard key={prod.id} product={prod} />
             ))}
           </div>

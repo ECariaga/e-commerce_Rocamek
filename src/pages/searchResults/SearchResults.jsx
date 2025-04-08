@@ -1,10 +1,12 @@
 import { useLocation } from "react-router-dom";
-import useProducts from "../../hooks/useProducts"; // Hook que obtiene los productos de Firebase
+import { useContext } from "react";
+import { ProductsContext } from "../../context/ProductsContext";
 import styles from "./SearchResults.module.css";
 import ProductCard from "../../components/productCard/ProductCard";
 
 function SearchResults() {
-  const { products } = useProducts(); // Obtener productos de Firebase
+  const { products, loading, error } = useContext(ProductsContext);
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("q") || ""; // Obtener la consulta desde la URL
@@ -13,7 +15,8 @@ function SearchResults() {
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(query.toLowerCase())
   );
-
+  if (loading) return <p>Cargando productos...</p>;
+  if (error) return <p>Error: {error}</p>;
   return (
     <div className={styles.searchResultsContainer}>
       <h2>Resultados para: "{query}"</h2>

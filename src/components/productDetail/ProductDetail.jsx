@@ -1,21 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase/config";
+import useProduct from "../../hooks/useProduct";
 import Button from "../button/Button";
 import styles from "./ProductDetail.module.css";
 import QuantitySelector from "../quantitySelector/QuantitySelector";
-import Slider from "react-slick"; // Para el carousel
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const { product, loading, error } = useProduct(id);
   const [quantity, setQuantity] = useState(1);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Estado inicial basado en el ancho de la pantalla
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // Configuración del carrusel
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -27,43 +25,18 @@ const ProductDetail = () => {
     accessibility: true,
   };
 
-  //Para llamar al producto desde Firebase Database
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const docRef = doc(db, "products", id);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          setProduct({ id: docSnap.id, ...docSnap.data() });
-        } else {
-          console.log("No se encontró el producto");
-        }
-      } catch (error) {
-        console.error("Error obteniendo producto:", error);
-      }
-    };
-
-    fetchProduct();
-  }, [id]);
-
-  //Detectar cambios de tamaño de pantalla
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
-      //console.log("isMobile:", window.innerWidth <= 768); // Depuración
     };
     window.addEventListener("resize", handleResize);
-    handleResize(); //Actualizar el estado
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  //En el caso que no se carga el producto
-  if (!product) {
-    return <p>Cargando...</p>;
-  }
+  if (loading) return <p>Cargando producto...</p>;
+  if (error) return <p>Error al cargar el producto: {error}</p>;
+  if (!product) return <p>Producto no encontrado</p>;
 
   return (
     <div className={styles.detailContainer}>
@@ -77,7 +50,6 @@ const ProductDetail = () => {
                 className={styles.mainImage}
               />
             </div>
-
             {product.secondaryImages &&
               product.secondaryImages.map((img, index) => (
                 <div className={styles.secondaryImg} key={index}>
@@ -98,7 +70,6 @@ const ProductDetail = () => {
                 className={styles.mainImage}
               />
             </div>
-
             <div className={styles.secondaryImg}>
               {product.secondaryImages &&
                 product.secondaryImages.map((img, index) => (

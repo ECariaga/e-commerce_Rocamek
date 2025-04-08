@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config";
 
-const useCategories = () => {
+export const CategoriesContext = createContext();
+
+export function CategoriesProvider({ children }) {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,14 +20,18 @@ const useCategories = () => {
         }));
         setCategories(categoryList);
       } catch (err) {
-        setError(err);
-        console.error("Error al obtener categorías:", err);
+        setError(err.message);
       } finally {
         setLoading(false);
       }
     };
+
     fetchCategories();
   }, []);
-  return { categories, loading, error };
-};
-export default useCategories;
+
+  return (
+    <CategoriesContext.Provider value={{ categories, loading, error }}>
+      {children}
+    </CategoriesContext.Provider>
+  );
+}
