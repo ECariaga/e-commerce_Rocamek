@@ -13,6 +13,7 @@ const ProductDetail = () => {
   const { product, loading, error } = useProduct(id);
   const [quantity, setQuantity] = useState(1);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const sliderSettings = {
     dots: true,
@@ -34,9 +35,30 @@ const ProductDetail = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    // Reiniciar índice cuando cambia el producto
+    if (product) {
+      setCurrentIndex(0);
+    }
+  }, [product]);
+
+  // Autoplay en pantallas grandes
+  useEffect(() => {
+    if (!isMobile && product?.secondaryImages?.length) {
+      const allImages = [product.urlImage, ...product.secondaryImages];
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % allImages.length);
+      }, 5000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isMobile, product]);
+
   if (loading) return <p>Cargando producto...</p>;
   if (error) return <p>Error al cargar el producto: {error}</p>;
   if (!product) return <p>Producto no encontrado</p>;
+
+  const allImages = [product.urlImage, ...(product.secondaryImages || [])];
 
   return (
     <div className={styles.detailContainer}>
@@ -65,21 +87,23 @@ const ProductDetail = () => {
           <>
             <div className={styles.mainPhoto}>
               <img
-                src={product.urlImage}
+                src={allImages[currentIndex]}
                 alt={product.title}
                 className={styles.mainImage}
               />
             </div>
             <div className={styles.secondaryImg}>
-              {product.secondaryImages &&
-                product.secondaryImages.map((img, index) => (
-                  <img
-                    key={index}
-                    src={img}
-                    alt={`Imagen secundaria ${index + 1}`}
-                    className={styles.productThumbItem}
-                  />
-                ))}
+              {allImages.map((img, index) => (
+                <img
+                  key={index}
+                  src={img}
+                  alt={`Imagen ${index + 1}`}
+                  className={`${styles.productThumbItem} ${
+                    currentIndex === index ? styles.activeThumb : ""
+                  }`}
+                  onClick={() => setCurrentIndex(index)}
+                />
+              ))}
             </div>
           </>
         )}
@@ -93,7 +117,6 @@ const ProductDetail = () => {
           <label htmlFor="amount">Cantidad:</label>
           <QuantitySelector value={quantity} onChange={setQuantity} />
         </div>
-
         <Button text={"Agregar al carrito"} />
       </div>
     </div>

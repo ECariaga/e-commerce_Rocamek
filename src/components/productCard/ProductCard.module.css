@@ -10,9 +10,10 @@
 
   /* Tamaño adaptable */
   width: 100%;
-  max-width: 300px;
-  min-width: 220px;
+  max-width: 250px;
+  min-width: 150px;
   height: auto;
+  margin: auto;
   max-height: 450px;
   min-height: 350px;
   flex-grow: 1;
