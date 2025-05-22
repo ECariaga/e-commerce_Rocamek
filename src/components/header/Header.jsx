@@ -1,21 +1,29 @@
 import styles from "./Header.module.css";
 import NavBar from "../navbar/NavBar";
+import CartModal from "../cart/CartModal";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi2";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 //import useProducts from "../../hooks/useProducts";
 
 function Header() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const { cartItems } = useCart();
 
   const toggleSearch = () => {
     setIsSearchExpanded(!isSearchExpanded);
     setSearchQuery(""); //Reinicia la busqueda al cerrar
+  };
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
   };
 
   const handleSearch = () => {
@@ -51,8 +59,8 @@ function Header() {
                 />
               )}
               <button className={styles.search_button} onClick={toggleSearch}>
-                <IoSearchOutline />
                 {/* icono de lupa */}
+                <IoSearchOutline />
               </button>
               {isSearchExpanded && (
                 <button className={styles.close_button} onClick={toggleSearch}>
@@ -62,10 +70,20 @@ function Header() {
             </div>
             {!isSearchExpanded && (
               <div className={styles.link_container}>
-                <a href="/" className={styles.link}>
-                  <IoCartOutline className={styles.icon} />{" "}
+                <button className={styles.link} onClick={toggleCart}>
                   {/* icono de carro */}
-                </a>
+                  <IoCartOutline className={styles.icon} />{" "}
+                  {cartItems.length > 0 && (
+                    <span className={styles.cart_count}>
+                      {cartItems.reduce(
+                        (total, item) => total + item.quantity,
+                        0
+                      )}
+                    </span>
+                  )}
+                  {/* Modal del carrito */}
+                  <CartModal isOpen={isCartOpen} onClose={toggleCart} />
+                </button>
                 <a href="/" className={styles.link}>
                   <HiOutlineUser className={styles.icon} />
                   {/* icono de usuario */}

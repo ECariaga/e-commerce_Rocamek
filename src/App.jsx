@@ -12,29 +12,32 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SearchResults from "./pages/searchResults/SearchResults";
 import { ProductsProvider } from "./context/ProductsContext";
 import { CategoriesProvider } from "./context/CategoriesContext";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
   return (
     <>
       <ProductsProvider>
         <CategoriesProvider>
-          <Router>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/products" element={<Products />}></Route>
-              <Route path="/about" element={<About />}></Route>
-              <Route path="/contact" element={<Contact />}></Route>
-              <Route path="/categories" element={<Category />}></Route>
-              <Route path="/item/:id" element={<ProductDetail />}></Route>
-              <Route path="/search" element={<SearchResults />}></Route>
-              <Route
-                path="/products-by-category/:categoryName"
-                element={<ProductsByCategory />}
-              />
-            </Routes>
-            <Footer />
-          </Router>
+          <CartProvider>
+            <Router>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/products" element={<Products />}></Route>
+                <Route path="/about" element={<About />}></Route>
+                <Route path="/contact" element={<Contact />}></Route>
+                <Route path="/categories" element={<Category />}></Route>
+                <Route path="/item/:id" element={<ProductDetail />}></Route>
+                <Route path="/search" element={<SearchResults />}></Route>
+                <Route
+                  path="/products-by-category/:categoryName"
+                  element={<ProductsByCategory />}
+                />
+              </Routes>
+              <Footer />
+            </Router>
+          </CartProvider>
         </CategoriesProvider>
       </ProductsProvider>
     </>

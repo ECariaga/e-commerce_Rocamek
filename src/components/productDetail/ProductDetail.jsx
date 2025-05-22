@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import useProduct from "../../hooks/useProduct";
 import Button from "../button/Button";
 import styles from "./ProductDetail.module.css";
@@ -7,6 +8,7 @@ import QuantitySelector from "../quantitySelector/QuantitySelector";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import formatPrice from "../../utils/formatPrice";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -14,6 +16,7 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { addToCart } = useCart();
 
   const sliderSettings = {
     dots: true,
@@ -53,6 +56,10 @@ const ProductDetail = () => {
       return () => clearInterval(interval);
     }
   }, [isMobile, product]);
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+  };
 
   if (loading) return <p>Cargando producto...</p>;
   if (error) return <p>Error al cargar el producto: {error}</p>;
@@ -111,13 +118,13 @@ const ProductDetail = () => {
 
       <div className={styles.contentSection}>
         <h2>{product.title}</h2>
-        <p className={styles.price}>${product.price}</p>
+        <p className={styles.price}>{formatPrice(product.price)}</p>
         <p>{product.description}</p>
         <div className={styles.amount}>
           <label htmlFor="amount">Cantidad:</label>
           <QuantitySelector value={quantity} onChange={setQuantity} />
         </div>
-        <Button text={"Agregar al carrito"} />
+        <Button text={"Agregar al carrito"} onClick={handleAddToCart} />
       </div>
     </div>
   );
