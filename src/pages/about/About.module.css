@@ -1,0 +1,122 @@
+.contentContainer {
+  margin: 5% 10% 10% 10%;
+}
+
+/*SECCION DE HERO */
+
+.heroImage {
+  display: flex;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/src/assets/images/hero-about.jpg");
+  height: 80vh;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 100px;
+  color: white;
+}
+
+.heroText p {
+  font-size: 2vw;
+  margin-block-start: 0.2em;
+  margin-block-end: 1em;
+}
+
+/*SECCION DE QUIENES SOMOS */
+.aboutHistory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: 30px;
+  padding-block: 40px;
+  margin: 50px 0;
+  row-gap: 20px;
+  background: #fff;
+}
+
+.aboutHistory h2 {
+  margin-right: auto;
+}
+
+.misionSection,
+.visionSection {
+  display: flex;
+  height: auto;
+  max-height: 500px;
+  align-items: center;
+  margin: 50px 0;
+  background: #fff;
+}
+.misionImg,
+.visionImg {
+  width: 40%;
+  max-height: 500px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.misionContent,
+.visionContent {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 40px;
+  row-gap: 20px;
+}
+
+.valuesSection {
+  background: #fff;
+  padding-inline: 30px;
+  padding-block: 40px;
+}
+
+.valuesContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.valuesCard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background: #eeeeee;
+  padding: 20px;
+  border-radius: 20px;
+}
+.card h4 {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/*Movile screen*/
+@media (max-width: 800px) and (min-width: 320px) {
+  .heroText {
+    margin: 0 auto;
+  }
+  .misionImg,
+  .visionImg {
+    display: none;
+  }
+  .valuesCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
