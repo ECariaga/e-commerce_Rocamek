@@ -104,6 +104,25 @@
   opacity: 0.8;
   box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
 }
+.modalContent {
+  display: flex;
+  flex-direction: column;
+}
+.modalTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  background-color: #181818;
+  border-radius: 8px 8px 0px 0px;
+  color: #ccc;
+}
+.modalInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  row-gap: 15px;
+}
 
 /*Movile screen*/
 @media (max-width: 1120px) and (min-width: 800px) {

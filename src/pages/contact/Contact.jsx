@@ -1,9 +1,22 @@
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import styles from "./Contact.module.css";
+import { useState } from "react";
+import Modal from "../../components/modal/Modal";
+import Button from "../../components/button/Button";
+import { MdOutlineMarkEmailRead } from "react-icons/md";
+import { MdOutlineErrorOutline } from "react-icons/md";
 
 const Contact = () => {
   const form = useRef();
+  const [modalData, setModalData] = useState({
+    open: false,
+    title: "",
+    content: "",
+    icon: null,
+  });
+
+  const closeModal = () => setModalData({ ...modalData, open: false });
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -14,16 +27,26 @@ const Contact = () => {
       })
       .then(
         () => {
+          setModalData({
+            open: true,
+            title: "Mensaje enviado",
+            content:
+              "¡Gracias por contactarnos! Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible.",
+            icon: <MdOutlineMarkEmailRead size={60} />,
+          });
           console.log("SUCCESS!");
-          alert(
-            "¡Gracias por contactarnos! Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible."
-          );
+
+          form.current.reset(); // Reset the form after successful submission
         },
         (error) => {
+          setModalData({
+            open: true,
+            title: "Error al enviar",
+            content:
+              "Lo sentimos, ha ocurrido un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.",
+            icon: <MdOutlineErrorOutline size={60} />,
+          });
           console.log("FAILED...", error.text);
-          alert(
-            "Lo sentimos, ha ocurrido un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde."
-          );
         }
       );
   };
@@ -87,6 +110,21 @@ const Contact = () => {
           </div>
         </form>
       </div>
+
+      <Modal isOpen={modalData.open} onClose={closeModal}>
+        <div className={styles.modalContent}>
+          <div className={styles.modalTop}>{modalData.icon}</div>
+          <div className={styles.modalInfo}>
+            <h2>{modalData.title}</h2>
+            <p>{modalData.content}</p>
+            <Button
+              text="Cerrar"
+              onClick={closeModal}
+              className={styles.closeButton}
+            />
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
