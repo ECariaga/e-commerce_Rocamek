@@ -1,21 +1,26 @@
 import styles from "./Header.module.css";
 import NavBar from "../navbar/NavBar";
+import LogoutButton from "../logoutButton/LogoutButton";
 import CartModal from "../cart/CartModal";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi2";
 import { IoClose } from "react-icons/io5";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { useAuth } from "../../context/AuthContext";
 //import useProducts from "../../hooks/useProducts";
 
 function Header() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [openDropdown, setOpenDropdown] = useState(false);
   const navigate = useNavigate();
   const { cartItems } = useCart();
+  const { user } = useAuth();
 
   const toggleSearch = () => {
     setIsSearchExpanded(!isSearchExpanded);
@@ -33,13 +38,31 @@ function Header() {
     navigate(`/search?q=${encodeURIComponent(searchQuery)}`); // Redirige con el término de búsqueda
   };
 
+  const handleOpen = () => {
+    setOpenDropdown(!openDropdown);
+  };
+
+  //Cierra el dropdown si se hache click fuera
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(`.${styles.userContainer}`)) {
+        setOpenDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <section className={styles.header}>
       <section className={styles.header_top}>
         <section className={styles.header_top_logo}>
-          <a href="/" className={styles.header_logo}>
+          <Link to={"/"} className={styles.header_logo}>
             ROCAMEK
-          </a>
+          </Link>
         </section>
         <section className={styles.header_top_search}>
           <section className={styles.header_top_navigation}>
@@ -84,10 +107,52 @@ function Header() {
                   {/* Modal del carrito */}
                   <CartModal isOpen={isCartOpen} onClose={toggleCart} />
                 </button>
-                <a href="/" className={styles.link}>
-                  <HiOutlineUser className={styles.icon} />
-                  {/* icono de usuario */}
-                </a>
+                <div className={styles.userContainer}>
+                  <button
+                    onClick={handleOpen}
+                    className={styles.link}
+                    style={{ gap: "5px" }}
+                  >
+                    <HiOutlineUser className={styles.icon} />
+                    {/* icono de usuario */}
+                    {user ? (
+                      <div>
+                        <span className={styles.userName}>{user.name}</span>{" "}
+                        {/* Mostrar nombre de usuario */}
+                      </div>
+                    ) : (
+                      <Link to={"/login"} className={styles.userName}>
+                        Iniciar sesión
+                      </Link> // Si no está logueado
+                    )}
+                  </button>
+
+                  {user && openDropdown && (
+                    <ul className={styles.dropdownMenu}>
+                      <li className={styles.menuItem}>
+                        <Link
+                          to={"/my-profile"}
+                          className={styles.menuItemLink}
+                        >
+                          Mi perfil
+                        </Link>
+                      </li>
+                      <li className={styles.menuItem}>
+                        <Link
+                          to={"/my-purchases"}
+                          className={styles.menuItemLink}
+                        >
+                          Compras
+                        </Link>
+                      </li>
+                      <hr />
+                      <li className={styles.menuItem}>
+                        <LogoutButton />
+                      </li>
+                    </ul>
+                  )}
+                </div>
+
                 <div className={styles.header_top_navbar}>
                   <NavBar />
                 </div>
