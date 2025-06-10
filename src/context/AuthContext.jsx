@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { db, auth } from "../firebase/config";
-import { getDoc, doc } from "firebase/firestore";
+import { onSnapshot, doc } from "firebase/firestore";
 
 const AuthContext = createContext();
 
@@ -10,21 +10,26 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        //Obtener datos adicionales del usuario desde Firestore
-        const userDoc = await getDoc(doc(db, "users", firebaseUser.uid));
-        const userData = userDoc.exists() ? userDoc.data() : {};
-        setUser({
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          ...userData,
+        const userRef = doc(db, "users", firebaseUser.uid);
+        //Suscribirse a camnbios en el documento del usuario
+        const unsubscribeUser = onSnapshot(userRef, (userDoc) => {
+          const userData = userDoc.exists() ? userDoc.data() : {};
+          setUser({
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            ...userData,
+          });
         });
+
+        return unsubscribeUser;
       } else {
         setUser(null);
       }
     });
-    return () => unsubscribe();
+
+    return () => unsubscribeAuth(); //Limpia la suscripcion del auth
   }, []);
 
   return (

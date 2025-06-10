@@ -12,6 +12,7 @@ import ProductDetail from "./components/productDetail/ProductDetail";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Profile from "./pages/profile/Profile";
+import EditProfile from "./pages/profile/EditProfile";
 import ProductsByCategory from "./components/productsByCategory/ProductsByCategory";
 import { Routes, Route, useLocation } from "react-router-dom";
 import SearchResults from "./pages/searchResults/SearchResults";
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/register" element={<Register />}></Route>
                 <Route path="/my-profile" element={<Profile />}></Route>
+                <Route path="/edit-profile" element={<EditProfile />}></Route>
                 <Route
                   path="/products-by-category/:categoryName"
                   element={<ProductsByCategory />}
