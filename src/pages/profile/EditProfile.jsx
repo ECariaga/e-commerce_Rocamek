@@ -1,13 +1,15 @@
 import styles from "./Profile.module.css";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { db } from "../../firebase/config";
 import { doc, setDoc } from "firebase/firestore";
 import regionsData from "../../utils/communes-regions.json";
 
-const Profile = () => {
+const EditProfile = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [code, setCode] = useState("");
@@ -45,10 +47,30 @@ const Profile = () => {
         },
         { merge: true }
       );
+      //Redirigira al perfil después de actualizar
+      navigate("/my-profile", {
+        state: {
+          toast: {
+            title: "Perfil actualizado",
+            message: "Tu perfil ha sido actualizado correctamente.",
+            variant: "success",
+          },
+        },
+      });
     } catch (error) {
       setError(error.message);
       console.error("Error actualizando el perfil:", error);
-      alert("Hubo un error al guardar los cambios");
+      //Redirigira al perfil después en caso que de ocurra un error
+      navigate("/my-profile", {
+        state: {
+          toast: {
+            title: "Error al actualizar",
+            message:
+              "Ocurrió un error al actualizar tu perfil. Por favor, inténtalo de nuevo.",
+            variant: "error",
+          },
+        },
+      });
     }
   };
 
@@ -184,4 +206,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default EditProfile;

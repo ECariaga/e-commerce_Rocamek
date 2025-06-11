@@ -1,0 +1,97 @@
+:root {
+  --toastColor: #399427;
+}
+
+.toastContainer {
+  display: flex;
+  width: 90vw;
+  max-width: 800px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 27px;
+  height: auto;
+  border-radius: 15px;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%) translateY(-20px);
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0px 3px 10px rgb(0, 0, 0, 0.3);
+  gap: 26px;
+  border: 0.5px solid var(--toastColor);
+  overflow: hidden;
+  pointer-events: none; /* Prevent click-through when invisible */
+  flex-wrap: wrap;
+}
+
+.toastContainer.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto; /* Enable interaction when visible */
+}
+
+.toastContainer::before {
+  content: "";
+  height: 100%;
+  width: 6px;
+  background: var(--toastColor);
+  position: absolute;
+  left: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.toastContainer .toastMessage {
+  display: flex;
+  flex-direction: column;
+}
+
+.toastContainer .toastMessage .head {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.toastContainer .toastMessage .saved {
+  font-size: 15px;
+  font-weight: 400;
+  color: #666;
+}
+
+.toastContainer .toastIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  background: #fff;
+  color: var(--toastColor);
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.toastContainer .closeIcon {
+  position: absolute;
+  color: #666;
+  top: 15px;
+  right: 15px;
+  width: 15px;
+  height: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+
+.toastContainer .closeIcon:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+@media (max-width: 800px) and (min-width: 320px) {
+  .toastContainer {
+    padding: 15px;
+  }
+}
