@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Toast from "../../components/toast/Toast";
+import DeleteAccountButton from "../../components/deleteAccountButton/DeleteAccountButton";
+import { useDeleteAccount } from "../../hooks/usedeleteAccount";
 
 const Profile = () => {
   const { user } = useAuth();
   const location = useLocation();
   const [toast, setToast] = useState(null);
+  const deleteAccount = useDeleteAccount();
 
   useEffect(() => {
     if (location.state?.toast) {
@@ -22,7 +25,7 @@ const Profile = () => {
     <div className={styles.container}>
       <h1>Mi Perfil</h1>
       <div className={styles.infoContainer}>
-        <h2>Información personal</h2>
+        <h3>Información personal</h3>
 
         <div className={styles.infoGroup}>
           <p>Nombre y apellido</p>
@@ -66,6 +69,19 @@ const Profile = () => {
           <Link to={"/edit-profile"} className={styles.button}>
             Modificar
           </Link>
+        </div>
+      </div>
+      <div className={styles.infoContainer}>
+        <div className={styles.deleteAccountContainer}>
+          <h3>Eliminar cuenta de usuario</h3>
+
+          <p>
+            Al eliminar tu cuenta, perderás todos tus datos y no podrás
+            recuperarlos.
+          </p>
+          <div className={styles.deleteButton}>
+            <DeleteAccountButton onDelete={deleteAccount} />
+          </div>
         </div>
       </div>
       {toast && (

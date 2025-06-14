@@ -14,6 +14,7 @@ export function CartProvider({ children }) {
   const { user } = useAuth();
   const [cartItems, setCartItems] = useState([]);
   const [cartLoaded, setCartLoaded] = useState(false); // indica si el carrito fue cargado desde Firestore
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
 
   // Cargar carrito desde Firestore cuando cambia el usuario
   useEffect(() => {
@@ -36,7 +37,7 @@ export function CartProvider({ children }) {
         console.error("Error fetching cart:", error);
         setCartItems([]);
       } finally {
-        setCartLoaded(true); // ✅ solo después de terminar la carga
+        setCartLoaded(true); // Solo después de terminar la carga
       }
     };
 
@@ -45,7 +46,7 @@ export function CartProvider({ children }) {
 
   // Guardar carrito en Firestore cuando cambia
   useEffect(() => {
-    if (!user || !cartLoaded) return; // Solo guardar cuando el carrito ha sido cargado
+    if (!user || !cartLoaded || isDeletingAccount) return; // Solo guardar cuando el carrito ha sido cargado
 
     const saveCart = async () => {
       try {
@@ -56,7 +57,7 @@ export function CartProvider({ children }) {
     };
 
     saveCart();
-  }, [cartItems, user, cartLoaded]);
+  }, [cartItems, user, cartLoaded, isDeletingAccount]);
 
   const addToCart = (product, quantity = 1) => {
     setCartItems((prev) => {
@@ -86,7 +87,13 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, clearCart }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        setIsDeletingAccount,
+      }}
     >
       {children}
     </CartContext.Provider>
