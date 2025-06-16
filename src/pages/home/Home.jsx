@@ -11,6 +11,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ProductsContext } from "../../context/ProductsContext";
 import { CategoriesContext } from "../../context/CategoriesContext";
+import { useLocation } from "react-router-dom";
+import { useToast } from "../../context/ToastContext";
 
 const settings = {
   className: "center",
@@ -24,7 +26,28 @@ const settings = {
 
 function Home() {
   let navigate = useNavigate(); // Para navegar a otras rutas
+  const location = useLocation(); // Para obtener la ubicación actual
+  const { showToast } = useToast(); // Para mostrar notificaciones
   const [isDiscount, setIsDiscount] = useState(true);
+
+  // Verificar si la URL contiene el parámetro de estado
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const status = params.get("status");
+    if (status === "account-deleted") {
+      showToast({
+        title: "Cuenta eliminada",
+        message: "Tu cuenta ha sido eliminada exitosamente.",
+        variant: "success",
+      });
+
+      //Limpiar el parámetro de estado de la URL
+      const clearUrl = location.pathname;
+      window.history.replaceState({}, document.title, clearUrl);
+
+      window.scrollTo({ top: 0, behavior: "smooth" }); // Desplazar la vista al inicio de la página
+    }
+  }, [location, showToast]);
 
   // Consumir datos de productos desde el contexto
   const {

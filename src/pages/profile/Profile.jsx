@@ -2,24 +2,43 @@ import styles from "./Profile.module.css";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Toast from "../../components/toast/Toast";
+import { useEffect } from "react";
 import DeleteAccountButton from "../../components/deleteAccountButton/DeleteAccountButton";
 import { useDeleteAccount } from "../../hooks/usedeleteAccount";
+import { useToast } from "../../context/ToastContext";
 
 const Profile = () => {
   const { user } = useAuth();
   const location = useLocation();
-  const [toast, setToast] = useState(null);
+  const { showToast } = useToast(); // Para mostrar notificaciones
+
   const deleteAccount = useDeleteAccount();
 
   useEffect(() => {
-    if (location.state?.toast) {
-      setToast(location.state.toast);
-      window.scrollTo({ top: 0, behavior: "smooth" }); // Desplazar la vista al inicio de la página
-      window.history.replaceState({}, document.title); // Limpiar el estado del toast después de mostrarlo
+    const params = new URLSearchParams(location.search);
+    const status = params.get("status");
+
+    if (status === "updated") {
+      showToast({
+        title: "Perfil actualizado",
+        message: "Tu perfil ha sido actualizado exitosamente.",
+        variant: "success",
+      });
     }
-  }, [location]);
+    if (status === "error") {
+      showToast({
+        title: "Error al actualizar",
+        message:
+          "Ocurrió un error al actualizar tu perfil. Por favor, inténtalo de nuevo.",
+        variant: "error",
+      });
+    }
+    if (status) {
+      const clearUrl = location.pathname;
+      window.history.replaceState({}, document.title, clearUrl);
+      window.scrollTo({ top: 0, behavior: "smooth" }); // Desplazar la vista al inicio de la página
+    }
+  }, [location, showToast]);
 
   return (
     <div className={styles.container}>
@@ -84,16 +103,6 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      {toast && (
-        <Toast
-          variant={toast.variant}
-          title={toast.title}
-          message={toast.message}
-          duration={4000}
-          open={true}
-          onClose={() => setToast(null)}
-        />
-      )}
     </div>
   );
 };

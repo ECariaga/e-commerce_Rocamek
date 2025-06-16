@@ -47,30 +47,13 @@ const EditProfile = () => {
         },
         { merge: true }
       );
-      //Redirigira al perfil después de actualizar
-      navigate("/my-profile", {
-        state: {
-          toast: {
-            title: "Perfil actualizado",
-            message: "Tu perfil ha sido actualizado correctamente.",
-            variant: "success",
-          },
-        },
-      });
+      //Redirigira al perfil después de actualizar con un status
+      navigate("/my-profile?status=updated");
     } catch (error) {
       setError(error.message);
       console.error("Error actualizando el perfil:", error);
       //Redirigira al perfil después en caso que de ocurra un error
-      navigate("/my-profile", {
-        state: {
-          toast: {
-            title: "Error al actualizar",
-            message:
-              "Ocurrió un error al actualizar tu perfil. Por favor, inténtalo de nuevo.",
-            variant: "error",
-          },
-        },
-      });
+      navigate("/my-profile?status=error");
     }
   };
 

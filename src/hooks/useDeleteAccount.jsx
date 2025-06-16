@@ -2,15 +2,23 @@ import { deleteUser } from "firebase/auth";
 import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase/config";
 import { useCart } from "../context/CartContext";
+import { useToast } from "../context/ToastContext";
+import { useNavigate } from "react-router-dom";
 
 export function useDeleteAccount() {
   const { setIsDeletingAccount } = useCart();
+  const { showToast } = useToast();
+  const navigate = useNavigate();
 
   const deleteAccount = async () => {
     const user = auth.currentUser;
 
     if (!user) {
-      alert("No hay un usuario actualmente autenticado.");
+      showToast({
+        title: "Error",
+        message: "No hay un usuario actualmente autenticado.",
+        variant: "error",
+      });
       return;
     }
 
@@ -22,13 +30,19 @@ export function useDeleteAccount() {
       await deleteDoc(doc(db, "users", uid));
       await deleteUser(user);
 
-      window.location.href = "/";
-      alert("Cuenta eliminada exitosamente.");
+      navigate("/?status=account-deleted"); // Redirige a la página de inicio con un estado de cuenta eliminada
     } catch (error) {
       console.error("Error deleting account:", error);
 
       if (error.code === "auth/requires-recent-login") {
-        alert("Por favor, vuelve a iniciar sesión para eliminar tu cuenta.");
+        showToast({
+          title: "Error",
+          message:
+            "Por favor, vuelve a iniciar sesión para eliminar tu cuenta.",
+          variant: "error",
+        });
+
+        navigate("/login");
       }
 
       setIsDeletingAccount(false);

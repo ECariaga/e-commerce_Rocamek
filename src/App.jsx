@@ -20,6 +20,7 @@ import { ProductsProvider } from "./context/ProductsContext";
 import { CategoriesProvider } from "./context/CategoriesContext";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
+import { ToastProvider } from "./context/ToastContext";
 
 function App() {
   const location = useLocation();
@@ -31,26 +32,28 @@ function App() {
         <ProductsProvider>
           <CategoriesProvider>
             <CartProvider>
-              {!isAuthPage ? <Header /> : <AuthHeader />}
+              <ToastProvider>
+                {!isAuthPage ? <Header /> : <AuthHeader />}
 
-              <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/products" element={<Products />}></Route>
-                <Route path="/about" element={<About />}></Route>
-                <Route path="/contact" element={<Contact />}></Route>
-                <Route path="/categories" element={<Category />}></Route>
-                <Route path="/item/:id" element={<ProductDetail />}></Route>
-                <Route path="/search" element={<SearchResults />}></Route>
-                <Route path="/login" element={<Login />}></Route>
-                <Route path="/register" element={<Register />}></Route>
-                <Route path="/my-profile" element={<Profile />}></Route>
-                <Route path="/edit-profile" element={<EditProfile />}></Route>
-                <Route
-                  path="/products-by-category/:categoryName"
-                  element={<ProductsByCategory />}
-                />
-              </Routes>
-              {!isAuthPage ? <Footer /> : <AuthFooter />}
+                <Routes>
+                  <Route path="/" element={<Home />}></Route>
+                  <Route path="/products" element={<Products />}></Route>
+                  <Route path="/about" element={<About />}></Route>
+                  <Route path="/contact" element={<Contact />}></Route>
+                  <Route path="/categories" element={<Category />}></Route>
+                  <Route path="/item/:id" element={<ProductDetail />}></Route>
+                  <Route path="/search" element={<SearchResults />}></Route>
+                  <Route path="/login" element={<Login />}></Route>
+                  <Route path="/register" element={<Register />}></Route>
+                  <Route path="/my-profile" element={<Profile />}></Route>
+                  <Route path="/edit-profile" element={<EditProfile />}></Route>
+                  <Route
+                    path="/products-by-category/:categoryName"
+                    element={<ProductsByCategory />}
+                  />
+                </Routes>
+                {!isAuthPage ? <Footer /> : <AuthFooter />}
+              </ToastProvider>
             </CartProvider>
           </CategoriesProvider>
         </ProductsProvider>
