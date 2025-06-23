@@ -66,12 +66,52 @@
   color: #fff;
 }
 
-.remove_button:hover {
+.dark .remove_button:hover {
   color: #ff4d4d;
   transition: color 0.3s ease;
 }
 
-.cart_item:hover {
+.dark.cart_item {
+  background-color: #181818;
+}
+
+.dark.cart_item:hover {
   background-color: #272727;
   transition: background-color 0.3s ease;
+}
+
+.dark .cart_product_name,
+.dark .cart_product_price,
+.dark .remove_button {
+  color: #fff;
+}
+
+.dark .cart_item_quantity,
+.dark .cart_item_info {
+  color: #aaa;
+}
+
+.light.cart_item {
+  background-color: #fff;
+}
+
+.light .cart_product_name,
+.light .cart_product_price,
+.light .remove_button {
+  color: #000;
+}
+
+.light .cart_item_quantity,
+.light .cart_item_info {
+  color: #222;
+}
+
+.light.cart_item:hover {
+  background-color: #d8d8d8;
+  transition: background-color 0.3s ease;
+}
+
+.light .remove_button:hover {
+  color: #ff4d4d;
+  transition: color 0.3s ease;
 }

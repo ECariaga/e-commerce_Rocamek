@@ -4,14 +4,14 @@ import { useCart } from "../../context/CartContext";
 import formatPrice from "../../utils/formatPrice";
 import { Link } from "react-router-dom";
 
-function CartItem({ product, onClick }) {
+function CartItem({ product, onClick, variant = "dark" }) {
   const { removeFromCart } = useCart();
 
   const handleRemoveFromCart = () => {
     removeFromCart(product.id);
   };
   return (
-    <div className={styles.cart_item}>
+    <div className={`${styles.cart_item} ${styles[variant]}`}>
       <div className={styles.cart_item_image}>
         <img src={`${product.urlImage}`} alt="Product" />
       </div>

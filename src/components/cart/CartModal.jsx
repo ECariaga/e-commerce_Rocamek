@@ -3,11 +3,13 @@ import CartItem from "../CartItem/CartItem";
 import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
 import formatPrice from "../../utils/formatPrice";
 import Button from "../button/Button";
 
 function CartModal({ isOpen, onClose }) {
   const { cartItems } = useCart();
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [closing, setClosing] = useState(false);
 
@@ -86,6 +88,7 @@ function CartModal({ isOpen, onClose }) {
                     text="Finalizar compra"
                     onClick={() => {
                       alert("Redirigiendo a la página de pago...");
+                      navigate("/purchase-detail");
                       onClose();
                     }}
                     className={styles.checkout_button}
