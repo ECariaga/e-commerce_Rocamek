@@ -8,7 +8,7 @@ import { doc, setDoc } from "firebase/firestore";
 import regionsData from "../../utils/communes-regions.json";
 
 const EditProfile = () => {
-  const { user } = useAuth();
+  const { user, loadingUser } = useAuth();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -73,6 +73,10 @@ const EditProfile = () => {
       setCommuneList(regionObj ? regionObj.comunas : []);
     }
   }, [user]);
+
+  if (loadingUser) {
+    return <p>Cargando datos del usuario...</p>;
+  }
 
   return (
     <div className={styles.container}>

@@ -8,7 +8,7 @@ import { useDeleteAccount } from "../../hooks/usedeleteAccount";
 import { useToast } from "../../context/ToastContext";
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, loadingUser } = useAuth();
   const location = useLocation();
   const { showToast } = useToast(); // Para mostrar notificaciones
 
@@ -39,6 +39,10 @@ const Profile = () => {
       window.scrollTo({ top: 0, behavior: "smooth" }); // Desplazar la vista al inicio de la página
     }
   }, [location, showToast]);
+
+  if (loadingUser) {
+    return <p>Cargando datos del usuario...</p>;
+  }
 
   return (
     <div className={styles.container}>

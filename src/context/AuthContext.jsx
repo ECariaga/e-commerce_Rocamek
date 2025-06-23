@@ -8,6 +8,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -21,11 +22,17 @@ export const AuthProvider = ({ children }) => {
             email: firebaseUser.email,
             ...userData,
           });
+
+          setLoadingUser(false);
         });
 
-        return unsubscribeUser;
+        return () => {
+          unsubscribeUser();
+          setLoadingUser(false);
+        };
       } else {
         setUser(null);
+        setLoadingUser(false);
       }
     });
 
@@ -33,7 +40,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, loadingUser }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 

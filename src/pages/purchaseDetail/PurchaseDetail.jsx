@@ -9,7 +9,7 @@ import CartItem from "../../components/CartItem/CartItem";
 import { FaHome, FaStore } from "react-icons/fa";
 
 const PurchaseDetail = () => {
-  const { user } = useAuth();
+  const { user, loadingUser } = useAuth();
   const { cartItems, clearCart } = useCart();
   const { placeOrder } = usePlaceOrder();
 
@@ -106,6 +106,10 @@ const PurchaseDetail = () => {
       setLoading(false);
     }
   };
+
+  if (loadingUser) {
+    return <p>Cargando datos del usuario...</p>;
+  }
 
   return (
     <div className={styles.checkoutContainer}>
