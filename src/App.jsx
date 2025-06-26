@@ -13,7 +13,8 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
-import PurchaseDetail from "./pages/purchaseDetail/purchaseDetail";
+import PurchaseDetail from "./pages/purchaseDetail/PurchaseDetail";
+import PaymentMessage from "./pages/paymentMessage/paymentMessage";
 import ProductsByCategory from "./components/productsByCategory/ProductsByCategory";
 import { Routes, Route, useLocation } from "react-router-dom";
 import SearchResults from "./pages/searchResults/SearchResults";
@@ -51,6 +52,10 @@ function App() {
                   <Route
                     path="/purchase-detail"
                     element={<PurchaseDetail />}
+                  ></Route>
+                  <Route
+                    path="/payment-message"
+                    element={<PaymentMessage />}
                   ></Route>
                   <Route
                     path="/products-by-category/:categoryName"

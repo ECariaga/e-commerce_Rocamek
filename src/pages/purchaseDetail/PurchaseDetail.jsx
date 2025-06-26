@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { usePlaceOrder } from "../../hooks/usePlaceOrder";
 import { validateRut } from "@fdograph/rut-utilities";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./PurchaseDetail.module.css";
 import CartItem from "../../components/CartItem/CartItem";
 import { FaHome, FaStore } from "react-icons/fa";
@@ -12,6 +12,7 @@ const PurchaseDetail = () => {
   const { user, loadingUser } = useAuth();
   const { cartItems, clearCart } = useCart();
   const { placeOrder } = usePlaceOrder();
+  const navigate = useNavigate();
 
   const [cardNumber, setCardNumber] = useState("");
   const [cardNumberError, setCardNumberError] = useState(null);
@@ -95,13 +96,11 @@ const PurchaseDetail = () => {
 
       //Si fue exitoso el pago
       await placeOrder(user.uid, cartItems, total);
-      alert("Compra realizada con éxito");
       clearCart(); //Limpiar el carrito después de la compra
+      navigate("/payment-message?status=success");
     } catch (error) {
       console.error("Error al realizar la compra:", error);
-      alert(
-        "Error al realizar la compra. Por favor, inténtalo de nuevo más tarde."
-      );
+      navigate("/payment-message?status=error");
     } finally {
       setLoading(false);
     }

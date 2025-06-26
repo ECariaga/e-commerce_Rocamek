@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  color: #43d19e;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.successTitle {
+  color: #43d19e;
+}
+
+.successButton {
+  background-color: #43d19e;
+}
+
+.errorTitle {
+  color: #d8000c;
+}
+
+.errorButton {
+  background-color: #d8000c;
+}
+.textContent p {
+  margin-top: 0;
+}
+.textContent small {
+  margin-top: 20px;
+  color: #666;
+}
+
+.buttonContainer {
+  display: flex;
+  margin: 40px 30px 30px 30px;
+}
+
+.button {
+  display: flex;
+  border: 0;
+  width: 100%;
+  border-radius: 100px;
+  padding: 16px 30px;
+  margin-inline: 40px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3s ease background-color;
+}
+
+.button:hover {
+  opacity: 0.8;
+  box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 800px) and (min-width: 320px) {
+  .icon {
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  .buttonContainer {
+    margin: 20px 10px 10px 10px;
+  }
+
+  .button {
+    font-size: 12px;
+    padding: 10px 20px;
+    margin-inline: 0;
+  }
+}
