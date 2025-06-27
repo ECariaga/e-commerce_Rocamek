@@ -9,6 +9,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import formatPrice from "../../utils/formatPrice";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -61,7 +62,7 @@ const ProductDetail = () => {
     addToCart(product, quantity);
   };
 
-  if (loading) return <p>Cargando producto...</p>;
+  if (loading) return <SpinnerLoader />;
   if (error) return <p>Error al cargar el producto: {error}</p>;
   if (!product) return <p>Producto no encontrado</p>;
 

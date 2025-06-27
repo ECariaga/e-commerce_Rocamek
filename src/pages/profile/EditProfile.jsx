@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { db } from "../../firebase/config";
 import { doc, setDoc } from "firebase/firestore";
 import regionsData from "../../utils/communes-regions.json";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
 
 const EditProfile = () => {
   const { user, loadingUser } = useAuth();
@@ -75,7 +76,7 @@ const EditProfile = () => {
   }, [user]);
 
   if (loadingUser) {
-    return <p>Cargando datos del usuario...</p>;
+    return <SpinnerLoader />;
   }
 
   return (

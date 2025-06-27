@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./PurchaseDetail.module.css";
 import CartItem from "../../components/CartItem/CartItem";
 import { FaHome, FaStore } from "react-icons/fa";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
 
 const PurchaseDetail = () => {
   const { user, loadingUser } = useAuth();
@@ -107,7 +108,7 @@ const PurchaseDetail = () => {
   };
 
   if (loadingUser) {
-    return <p>Cargando datos del usuario...</p>;
+    return <SpinnerLoader />;
   }
 
   return (

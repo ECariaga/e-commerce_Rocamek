@@ -13,6 +13,7 @@ import { ProductsContext } from "../../context/ProductsContext";
 import { CategoriesContext } from "../../context/CategoriesContext";
 import { useLocation } from "react-router-dom";
 import { useToast } from "../../context/ToastContext";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
 
 const settings = {
   className: "center",
@@ -119,7 +120,7 @@ function Home() {
             <div className={styles.sliderContainer}>
               <Slider {...settings}>
                 {loadingProducts ? (
-                  <p>Cargando productos...</p>
+                  <SpinnerLoader />
                 ) : errorProducts ? (
                   <p>Error al cargar productos</p>
                 ) : filteredProducts.length > 0 ? (
@@ -143,7 +144,7 @@ function Home() {
 
             <div className={styles.cardsCategories}>
               {loadingCategories ? (
-                <p>Cargando categorías...</p>
+                <SpinnerLoader />
               ) : errorCategories ? (
                 <p>Error al cargar las categorías</p>
               ) : categories.length > 0 ? (
@@ -161,7 +162,7 @@ function Home() {
             <h2>Ofertas y Promociones</h2>
             <div className={styles.productsOnSale}>
               {loadingProducts ? (
-                <p>Cargando productos en oferta...</p>
+                <SpinnerLoader />
               ) : errorProducts ? (
                 <p>Error al cargar productos en oferta</p>
               ) : filteredProducts.length > 0 ? (

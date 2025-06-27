@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { ProductsContext } from "../../context/ProductsContext";
 import styles from "./SearchResults.module.css";
 import ProductCard from "../../components/productCard/ProductCard";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
 
 function SearchResults() {
   const { products, loading, error } = useContext(ProductsContext);
@@ -15,7 +16,7 @@ function SearchResults() {
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(query.toLowerCase())
   );
-  if (loading) return <p>Cargando productos...</p>;
+  if (loading) return <SpinnerLoader />;
   if (error) return <p>Error: {error}</p>;
   return (
     <div className={styles.searchResultsContainer}>

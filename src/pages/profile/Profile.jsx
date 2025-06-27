@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import DeleteAccountButton from "../../components/deleteAccountButton/DeleteAccountButton";
 import { useDeleteAccount } from "../../hooks/usedeleteAccount";
 import { useToast } from "../../context/ToastContext";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
 
 const Profile = () => {
   const { user, loadingUser } = useAuth();
@@ -41,7 +42,7 @@ const Profile = () => {
   }, [location, showToast]);
 
   if (loadingUser) {
-    return <p>Cargando datos del usuario...</p>;
+    return <SpinnerLoader />;
   }
 
   return (

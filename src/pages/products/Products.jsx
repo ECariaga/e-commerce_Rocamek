@@ -2,11 +2,12 @@ import styles from "./Products.module.css";
 import ProductCard from "../../components/productCard/ProductCard";
 import { useContext } from "react";
 import { ProductsContext } from "../../context/ProductsContext";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
 
 const Products = () => {
   const { products, loading, error } = useContext(ProductsContext);
 
-  if (loading) return <p>Cargando productos...</p>;
+  if (loading) return <SpinnerLoader />;
   if (error) return <p>Error: {error}</p>;
 
   return (
