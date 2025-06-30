@@ -29,9 +29,7 @@
   width: 100%;
 }
 
-.inputGroup input[type="text"],
-.inputGroup input[type="email"],
-.inputGroup input[type="password"] {
+.registerInput {
   width: 100%;
   padding: 12px 16px;
   border: 1px solid #ccc;
@@ -44,13 +42,26 @@
   resize: vertical;
 }
 
-.inputGroup input[type="text"]:focus,
-.inputGroup input[type="email"]:focus,
-.inputGroup input[type="password"]:focus {
+.registerInput:focus {
   border-color: #4a90e2;
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
   outline: none;
+}
+
+.valid {
+  border-color: green;
+}
+
+.invalid {
+  border-color: red;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
 }
 
 .passwordWrapper {
