@@ -64,18 +64,10 @@ function Home() {
     error: errorCategories,
   } = useContext(CategoriesContext);
 
-  const [filteredProducts, setFilteredProducts] = useState([]);
-
-  // Filtrar productos según el botón seleccionado
-  useEffect(() => {
-    if (products.length > 0) {
-      const filtered = isDiscount
-        ? products.filter((product) => product.discountPrice)
-        : products.filter((product) => product.featured);
-
-      setFilteredProducts(filtered);
-    }
-  }, [products, isDiscount]);
+  const discountedProducts = products.filter(
+    (product) => product.discountPrice
+  );
+  const featuredProducts = products.filter((product) => product.featured);
 
   return (
     <>
@@ -122,13 +114,21 @@ function Home() {
                 {loadingProducts ? (
                   <SpinnerLoader />
                 ) : errorProducts ? (
-                  <p>Error al cargar productos</p>
-                ) : filteredProducts.length > 0 ? (
-                  filteredProducts.map((product) => (
+                  <p>Error al cargar productos.</p>
+                ) : isDiscount ? (
+                  discountedProducts.length > 0 ? (
+                    discountedProducts.map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))
+                  ) : (
+                    <p>No hay productos en oferta.</p>
+                  )
+                ) : featuredProducts.length > 0 ? (
+                  featuredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                   ))
                 ) : (
-                  <p>No hay productos disponibles</p>
+                  <p>No hay productos destacados.</p>
                 )}
               </Slider>
             </div>
@@ -146,7 +146,7 @@ function Home() {
               {loadingCategories ? (
                 <SpinnerLoader />
               ) : errorCategories ? (
-                <p>Error al cargar las categorías</p>
+                <p>Error al cargar las categorías.</p>
               ) : categories.length > 0 ? (
                 categories
                   .slice(0, 4)
@@ -154,7 +154,7 @@ function Home() {
                     <Categories key={category.id} category={category} />
                   ))
               ) : (
-                <p>No hay categorías disponibles</p>
+                <p>No hay categorías disponibles.</p>
               )}
             </div>
           </section>
@@ -164,13 +164,13 @@ function Home() {
               {loadingProducts ? (
                 <SpinnerLoader />
               ) : errorProducts ? (
-                <p>Error al cargar productos en oferta</p>
-              ) : filteredProducts.length > 0 ? (
-                filteredProducts.map((product) => (
+                <p>Error al cargar productos en oferta.</p>
+              ) : discountedProducts.length > 0 ? (
+                discountedProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))
               ) : (
-                <p>No hay productos en oferta</p>
+                <p>No hay productos en oferta.</p>
               )}
             </div>
           </section>
