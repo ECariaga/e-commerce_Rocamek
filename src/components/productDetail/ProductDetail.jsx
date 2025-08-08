@@ -130,7 +130,7 @@ const ProductDetail = () => {
           <p className={styles.price}>{formatPrice(product.price)}</p>
         )}
 
-        <p>{product.description}</p>
+        <p className={styles.productDescription}>{product.description}</p>
         <div className={styles.amount}>
           <label htmlFor="amount">Cantidad:</label>
           <QuantitySelector value={quantity} onChange={setQuantity} />
