@@ -58,9 +58,29 @@
   padding: 20px 10px;
   text-align: center;
 }
+
+.priceSection {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
 .price {
   font-size: 20px;
   font-weight: bold;
+}
+
+.discountPrice {
+  font-size: 20px;
+  color: #b22222;
+  font-weight: bold;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  color: #6d6d6d;
+  margin-left: 10px;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .addButton {
@@ -92,5 +112,8 @@
   }
   .amount {
     align-items: center;
+  }
+  .priceSection {
+    justify-content: center;
   }
 }

@@ -119,7 +119,17 @@ const ProductDetail = () => {
 
       <div className={styles.contentSection}>
         <h2>{product.title}</h2>
-        <p className={styles.price}>{formatPrice(product.price)}</p>
+        {product.discountPrice ? (
+          <div className={styles.priceSection}>
+            <p className={styles.discountPrice}>
+              {formatPrice(product.discountPrice)}
+            </p>
+            <p className={styles.oldPrice}>{formatPrice(product.price)}</p>
+          </div>
+        ) : (
+          <p className={styles.price}>{formatPrice(product.price)}</p>
+        )}
+
         <p>{product.description}</p>
         <div className={styles.amount}>
           <label htmlFor="amount">Cantidad:</label>
