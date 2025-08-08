@@ -11,6 +11,10 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <section className={styles.container}>
       {!isOpen && (
@@ -20,10 +24,18 @@ function Navbar() {
         </span>
       )}
       <div className={`${styles.navbar} ${isOpen ? styles.active : ""}`}>
-        <Link to="/">Inicio</Link>
-        <Link to="/products">Productos</Link>
-        <Link to="/about">Nosotros</Link>
-        <Link to="/contact">Contáctenos</Link>
+        <Link to="/" onClick={closeMenu}>
+          Inicio
+        </Link>
+        <Link to="/products" onClick={closeMenu}>
+          Productos
+        </Link>
+        <Link to="/about" onClick={closeMenu}>
+          Nosotros
+        </Link>
+        <Link to="/contact" onClick={closeMenu}>
+          Contáctenos
+        </Link>
         {isOpen && (
           <span className={styles.close_icon} onClick={toggleMenu}>
             <IoClose />
