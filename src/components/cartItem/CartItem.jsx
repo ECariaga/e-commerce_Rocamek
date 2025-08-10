@@ -27,7 +27,9 @@ function CartItem({ product, onClick, variant = "dark" }) {
         <div className={styles.cart_item_info}>
           <span className={styles.cart_item_quantity}>x{product.quantity}</span>
           <span className={styles.cart_product_price}>
-            {formatPrice(product.price)}
+            {product.discountPrice
+              ? formatPrice(product.discountPrice)
+              : formatPrice(product.price)}
           </span>
         </div>
       </div>

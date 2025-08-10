@@ -46,7 +46,8 @@ function CartModal({ isOpen, onClose }) {
 
   //Calcular el subtotal
   const subtotal = cartItems.reduce((total, item) => {
-    return total + item.price * item.quantity;
+    const price = item.discountPrice ?? item.price; //Usa el valor de la izquierda si no es null ni undefined, de lo contrario usa el de la derecha.
+    return total + price * item.quantity;
   }, 0);
 
   return (
@@ -80,7 +81,7 @@ function CartModal({ isOpen, onClose }) {
                   </p>
                 </div>
                 <small className={styles.cart_items_modal_info}>
-                  Impuestos incluidos. Descuentos y envío calculados en la
+                  Impuestos y descuentos incluidos. Envío calculado en la
                   pantalla de pago.
                 </small>
                 <div className={styles.cart_items_modal_button}>

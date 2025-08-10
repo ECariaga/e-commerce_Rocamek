@@ -29,10 +29,10 @@ const PurchaseDetail = () => {
   const [quotas, setQuotas] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const total = cartItems.reduce((acc, item) => {
+    const price = item.discountPrice ?? item.price; //Usa el valor de la izquierda si no es null ni undefined, de lo contrario usa el de la derecha.
+    return acc + price * item.quantity;
+  }, 0);
 
   const validateCardNumber = (value) => {
     const isValid = /^\d{16}$/.test(value);
