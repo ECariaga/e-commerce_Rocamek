@@ -88,7 +88,6 @@ function CartModal({ isOpen, onClose }) {
                   <Button
                     text="Finalizar compra"
                     onClick={() => {
-                      alert("Redirigiendo a la página de pago...");
                       navigate("/purchase-detail");
                       onClose();
                     }}
