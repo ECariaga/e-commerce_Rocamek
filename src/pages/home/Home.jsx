@@ -23,6 +23,20 @@ const settings = {
   slidesToShow: 3,
   slidesToScroll: 3,
   adaptiveHeight: true,
+  responsive: [
+    {
+      breakpoint: 1024, // En pantallas medianas (menos de 1024px), muestra 2 tarjetas
+      settings: {
+        slidesToShow: 3,
+      },
+    },
+    {
+      breakpoint: 768, // En pantallas pequeñas (menos de 768px), muestra 1 tarjeta
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+  ],
 };
 
 function Home() {
@@ -183,18 +197,18 @@ function Home() {
             <div className={styles.aboutContent}>
               <h2>Sobre Nosotros</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent porta a dui sed tempor. Vivamus id vestibulum odio.
-                Nullam feugiat massa in nisl rhoncus, et facilisis mi molestie.
-                Fusce sit amet tristique erat. Curabitur et mi sed lorem
-                eleifend dignissim. Cras eu dui posuere est dictum egestas.
-                Donec ut sem eget dui luctus dictum tempor mollis dolor. Nulla
-                consequat magna at scelerisque hendrerit. Donec sit amet elit
-                non quam maximus blandit in vitae nunc. Cras elit ante,
-                consequat eget dolor sed, dapibus sodales leo.
+                En Rocamek somos una empresa familiar apasionada por la aventura
+                y la vida al aire libre. Sabemos lo importante que es contar con
+                equipo confiable, porque nosotros mismos lo usamos en cada
+                salida. Desde mochilas impermeables hasta kits de supervivencia,
+                seleccionamos cada producto para que te acompañe en cualquier
+                reto, grande o pequeño. Más que vender artículos, queremos
+                ayudarte a crear historias y vivir experiencias que recordarás
+                toda la vida.
               </p>
+
               <Button
-                text={"Ver más"}
+                text={"Conócenos"}
                 onClick={() => {
                   navigate("/about");
                 }}

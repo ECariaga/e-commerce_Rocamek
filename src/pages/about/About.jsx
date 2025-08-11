@@ -15,20 +15,38 @@ const About = () => {
             <div className={styles.aboutHistory}>
               <h2>¿Quiénes somos?</h2>
               <p>
-                Rocamek nació de la pasión por la aventura y la exploración.
-                Somos una empresa dedicada a proporcionar equipamiento de alta
-                calidad para actividades al aire libre, asegurando que cada
-                expedición sea segura y cómoda. Creemos que la naturaleza es un
-                espacio para descubrir, aprender y conectar con lo esencial. Nos
-                especializamos en ofrecer productos diseñados para resistir las
-                condiciones más exigentes, brindando soluciones confiables a
-                quienes buscan superar sus límites y desafiar lo desconocido.
-                Desde mochilas y tiendas de campaña hasta herramientas de
-                supervivencia, en Rocamek nos aseguramos de que cada artículo
-                cumpla con los estándares más altos de calidad. Más que una
-                tienda, somos una comunidad de aventureros que comparten la
-                misma pasión por la exploración. Nos impulsa la ies confían en
-                nosotros para sus viajes y desafíos en la naturaleza.
+                En Rocamek todo comenzó como una ilusión familiar. Entre salidas
+                de campamento, caminatas por la montaña y tardes enteras
+                explorando la naturaleza, descubrimos que lo que más nos unía
+                eran esas aventuras al aire libre. Con el tiempo, quisimos
+                compartir esa pasión y ayudar a que más personas pudieran vivir
+                experiencias así, con el equipo adecuado y la tranquilidad de
+                estar preparados.
+              </p>
+              <p>
+                Somos una empresa familiar dedicada a ofrecer equipamiento de
+                alta calidad para actividades outdoor. Conocemos de primera mano
+                lo que significa cargar una mochila durante horas, montar un
+                campamento bajo la lluvia o depender de un buen cuchillo en
+                medio de la nada. Por eso, seleccionamos cada producto pensando
+                en su resistencia, practicidad y utilidad real: desde mochilas
+                impermeables y pulseras paracord, hasta kits de supervivencia,
+                cuchillos tácticos y botellas térmicas que acompañan cada ruta.
+              </p>
+              <p>
+                En Rocamek creemos que la naturaleza es un lugar para descubrir,
+                aprender y reconectar con lo importante. Nos gusta pensar que,
+                cada vez que alguien recibe un pedido nuestro, no está comprando
+                solo un producto, sino una herramienta para crear recuerdos y
+                vivir momentos que se atesoran para siempre.
+              </p>
+              <p>
+                Más que una tienda, somos una comunidad de aventureros que
+                comparten la misma pasión por explorar. Y aunque hoy llegamos a
+                clientes de muchos lugares, seguimos trabajando con la misma
+                dedicación y trato cercano que cuando empezamos, porque en
+                nuestra familia sabemos que las mejores aventuras se viven
+                juntos.
               </p>
             </div>
           </section>

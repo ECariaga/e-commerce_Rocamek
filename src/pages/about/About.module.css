@@ -39,12 +39,15 @@
   padding-inline: 30px;
   padding-block: 40px;
   margin: 50px 0;
-  row-gap: 20px;
   background: #fff;
 }
 
 .aboutHistory h2 {
   margin-right: auto;
+}
+
+.aboutHistory p {
+  line-height: 1.6;
 }
 
 .misionSection,

@@ -10,28 +10,28 @@ const testimonials = [
     image: "./src/assets/images/Mujer.jpg",
     rating: 5,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta a dui sed tempor. Vivamus id vestibulum odio.",
+      "El cuchillo de supervivencia superó mis expectativas. Viene afilado, con funda resistente y un agarre que no resbala. Lo probé cortando cuerda, madera y hasta para preparar comida en el campamento.",
   },
   {
     name: "Cristóbal Fuertes",
     image: "./src/assets/images/hombre-1.jpg",
     rating: 4,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta a dui sed tempor. Vivamus id vestibulum odio.",
+      "Compré una mochila impermeable para mis excursiones en kayak. Aguantó perfectamente bajo lluvia intensa y hasta una caída al agua. Único detalle: el cierre podría ser un poco más suave, pero cumple su función al 100%.",
   },
   {
     name: "Enrique Moran",
     image: "./src/assets/images/hombre-2.jpg",
     rating: 4,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta a dui sed tempor. Vivamus id vestibulum odio.",
+      "La botella térmica mantiene el café caliente por horas, incluso en plena caminata invernal. Es resistente y fácil de limpiar. Lo único que cambiaría es que tuviera un sistema de apertura más rápido para beber sobre la marcha.",
   },
   {
     name: "María González",
-    image: "./src/assets/images/Mujer.jpg",
+    image: "./src/assets/images/Mujer-2.png",
     rating: 5,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta a dui sed tempor. Vivamus id vestibulum odio.",
+      "La pulsera paracord es una maravilla. La usé para improvisar una cuerda en plena ruta de montaña y me salvó de un buen apuro. Además, es ligera y se ve genial como accesorio.",
   },
 ];
 
