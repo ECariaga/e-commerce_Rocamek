@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
-import NavBar from "../navbar/NavBar";
-import LogoutButton from "../logoutButton/LogoutButton";
-import CartModal from "../cart/CartModal";
+import NavBar from "../navbar/NavBar.jsx";
+import LogoutButton from "../logoutButton/LogoutButton.jsx";
+import CartModal from "../cart/CartModal.jsx";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi2";
@@ -9,8 +9,8 @@ import { IoClose } from "react-icons/io5";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
-import { useAuth } from "../../context/AuthContext";
+import { useCart } from "../../context/CartContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 //import useProducts from "../../hooks/useProducts";
 
 function Header() {

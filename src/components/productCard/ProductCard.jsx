@@ -1,6 +1,6 @@
 import styles from "./ProductCard.module.css";
 import { Link } from "react-router-dom";
-import Button from "../button/Button";
+import Button from "../button/Button.jsx";
 
 //Funcion para formatear el precio en pesos chilenos
 const formatPrice = (price) => {

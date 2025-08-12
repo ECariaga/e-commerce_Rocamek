@@ -1,7 +1,7 @@
 import styles from "./CartItem.module.css";
 import { FaTrash } from "react-icons/fa";
-import { useCart } from "../../context/CartContext";
-import formatPrice from "../../utils/formatPrice";
+import { useCart } from "../../context/CartContext.jsx";
+import formatPrice from "../../utils/formatPrice.js";
 import { Link } from "react-router-dom";
 
 function CartItem({ product, onClick, variant = "dark" }) {

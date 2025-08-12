@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { ProductsContext } from "../../context/ProductsContext";
+import { ProductsContext } from "../../context/ProductsContext.jsx";
 import styles from "./SearchResults.module.css";
-import ProductCard from "../../components/productCard/ProductCard";
-import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
+import ProductCard from "../../components/productCard/ProductCard.jsx";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 
 function SearchResults() {
   const { products, loading, error } = useContext(ProductsContext);

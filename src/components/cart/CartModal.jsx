@@ -1,11 +1,11 @@
 import styles from "./CartModal.module.css";
-import CartItem from "../CartItem/CartItem";
+import CartItem from "../CartItem/CartItem.jsx";
 import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../context/CartContext.jsx";
 import { useNavigate } from "react-router-dom";
-import formatPrice from "../../utils/formatPrice";
-import Button from "../button/Button";
+import formatPrice from "../../utils/formatPrice.js";
+import Button from "../button/Button.jsx";
 
 function CartModal({ isOpen, onClose }) {
   const { cartItems } = useCart();

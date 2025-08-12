@@ -1,19 +1,19 @@
 import styles from "./Home.module.css";
-import Button from "../../components/button/Button";
-import Categories from "../../components/categories/Categories";
+import Button from "../../components/button/Button.jsx";
+import Categories from "../../components/categories/Categories.jsx";
 import { useEffect, useState, useContext } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import ProductCard from "../../components/productCard/ProductCard";
-import Testimonials from "../../components/testimonials/Testimonials";
+import ProductCard from "../../components/productCard/ProductCard.jsx";
+import Testimonials from "../../components/testimonials/Testimonials.jsx";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ProductsContext } from "../../context/ProductsContext";
-import { CategoriesContext } from "../../context/CategoriesContext";
+import { ProductsContext } from "../../context/ProductsContext.jsx";
+import { CategoriesContext } from "../../context/CategoriesContext.jsx";
 import { useLocation } from "react-router-dom";
-import { useToast } from "../../context/ToastContext";
-import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
+import { useToast } from "../../context/ToastContext.jsx";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 
 const settings = {
   className: "center",

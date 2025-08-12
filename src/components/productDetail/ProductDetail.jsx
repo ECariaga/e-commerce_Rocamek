@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
-import useProduct from "../../hooks/useProduct";
-import Button from "../button/Button";
+import { useCart } from "../../context/CartContext.jsx";
+import useProduct from "../../hooks/useProduct.jsx";
+import Button from "../button/Button.jsx";
 import styles from "./ProductDetail.module.css";
-import QuantitySelector from "../quantitySelector/QuantitySelector";
+import QuantitySelector from "../quantitySelector/QuantitySelector.jsx";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import formatPrice from "../../utils/formatPrice";
-import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
+import formatPrice from "../../utils/formatPrice.js";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 
 const ProductDetail = () => {
   const { id } = useParams();

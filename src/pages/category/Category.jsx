@@ -1,4 +1,4 @@
-import CategoriesLists from "../categoriesList/CategoriesList";
+import CategoriesLists from "../categoriesList/CategoriesList.jsx";
 import styles from "./Category.module.css";
 
 const Category = () => {

@@ -1,8 +1,8 @@
 import styles from "./Products.module.css";
-import ProductCard from "../../components/productCard/ProductCard";
+import ProductCard from "../../components/productCard/ProductCard.jsx";
 import { useContext } from "react";
-import { ProductsContext } from "../../context/ProductsContext";
-import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
+import { ProductsContext } from "../../context/ProductsContext.jsx";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 
 const Products = () => {
   const { products, loading, error } = useContext(ProductsContext);

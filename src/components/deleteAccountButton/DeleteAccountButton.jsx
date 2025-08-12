@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "../modal/Modal";
+import Modal from "../modal/Modal.jsx";
 import styles from "./DeleteAccountButton.module.css";
 import { MdOutlineErrorOutline } from "react-icons/md";
 

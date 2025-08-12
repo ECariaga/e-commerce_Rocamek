@@ -1,8 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
-import { db } from "../firebase/config";
+import { db } from "../firebase/config.js";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./AuthContext.jsx";
 
 const CartContext = createContext();
 

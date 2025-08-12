@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import { ProductsContext } from "../../context/ProductsContext";
-import ProductCard from "../productCard/ProductCard";
+import { ProductsContext } from "../../context/ProductsContext.jsx";
+import ProductCard from "../productCard/ProductCard.jsx";
 import styles from "./ProductsByCategory.module.css";
 
 const ProductsByCategory = () => {

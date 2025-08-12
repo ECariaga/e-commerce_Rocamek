@@ -1,4 +1,4 @@
-import OrderConfirmation from "../../components/orderConfirmation/OrderConfirmation";
+import OrderConfirmation from "../../components/orderConfirmation/OrderConfirmation.jsx";
 import styles from "../paymentMessage/PaymentMessage.module.css";
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";

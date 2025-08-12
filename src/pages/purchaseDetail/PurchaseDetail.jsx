@@ -1,13 +1,13 @@
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext.jsx";
 import { useState } from "react";
-import { useCart } from "../../context/CartContext";
-import { usePlaceOrder } from "../../hooks/usePlaceOrder";
+import { useCart } from "../../context/CartContext.jsx";
+import { usePlaceOrder } from "../../hooks/usePlaceOrder.jsx";
 import { validateRut } from "@fdograph/rut-utilities";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./PurchaseDetail.module.css";
-import CartItem from "../../components/CartItem/CartItem";
+import CartItem from "../../components/CartItem/CartItem.jsx";
 import { FaHome, FaStore } from "react-icons/fa";
-import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 
 const PurchaseDetail = () => {
   const { user, loadingUser } = useAuth();

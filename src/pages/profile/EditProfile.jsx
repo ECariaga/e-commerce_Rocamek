@@ -2,11 +2,11 @@ import styles from "./Profile.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import { db } from "../../firebase/config";
+import { useAuth } from "../../context/AuthContext.jsx";
+import { db } from "../../firebase/config.js";
 import { doc, setDoc } from "firebase/firestore";
 import regionsData from "../../utils/communes-regions.json";
-import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 
 const EditProfile = () => {
   const { user, loadingUser } = useAuth();

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase/config"; // Asegúrate de que el path es correcto
+import { db } from "../firebase/config.js"; // Asegúrate de que el path es correcto
 
 const useProduct = (productId) => {
   const [product, setProduct] = useState(null);

@@ -2,8 +2,8 @@ import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import styles from "./Contact.module.css";
 import { useState } from "react";
-import Modal from "../../components/modal/Modal";
-import Button from "../../components/button/Button";
+import Modal from "../../components/modal/Modal.jsx";
+import Button from "../../components/button/Button.jsx";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { MdOutlineErrorOutline } from "react-icons/md";
 

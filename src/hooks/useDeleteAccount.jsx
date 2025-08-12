@@ -1,8 +1,8 @@
 import { deleteUser } from "firebase/auth";
 import { deleteDoc, doc } from "firebase/firestore";
-import { auth, db } from "../firebase/config";
-import { useCart } from "../context/CartContext";
-import { useToast } from "../context/ToastContext";
+import { auth, db } from "../firebase/config.js";
+import { useCart } from "../context/CartContext.jsx";
+import { useToast } from "../context/ToastContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 export function useDeleteAccount() {
