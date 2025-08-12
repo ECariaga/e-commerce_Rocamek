@@ -14,7 +14,7 @@ import Register from "./pages/register/Register";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
 import PurchaseDetail from "./pages/purchaseDetail/PurchaseDetail";
-import PaymentMessage from "./pages/paymentMessage/paymentMessage";
+import PaymentMessage from "./pages/paymentMessage/PaymentMessage";
 import ProductsByCategory from "./components/productsByCategory/ProductsByCategory";
 import { Routes, Route, useLocation } from "react-router-dom";
 import SearchResults from "./pages/searchResults/SearchResults";
