@@ -1,12 +1,12 @@
 import styles from "./Profile.module.css";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext.jsx";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import DeleteAccountButton from "../../components/deleteAccountButton/DeleteAccountButton";
-import { useDeleteAccount } from "../../hooks/usedeleteAccount";
-import { useToast } from "../../context/ToastContext";
-import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader";
+import DeleteAccountButton from "../../components/deleteAccountButton/DeleteAccountButton.jsx";
+import { useDeleteAccount } from "../../hooks/useDeleteAccount.jsx";
+import { useToast } from "../../context/ToastContext.jsx";
+import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 
 const Profile = () => {
   const { user, loadingUser } = useAuth();
