@@ -154,7 +154,7 @@ function Header() {
                 </div>
 
                 <div className={styles.header_top_navbar}>
-                  <NavBar />
+                  <Navbar />
                 </div>
               </div>
             )}
