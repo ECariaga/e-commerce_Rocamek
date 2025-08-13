@@ -1,5 +1,5 @@
 import styles from "./CartModal.module.css";
-import CartItem from "../CartItem/CartItem.jsx";
+import CartItem from "../cartItem/CartItem.jsx";
 import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext.jsx";
