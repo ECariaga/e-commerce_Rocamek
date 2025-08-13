@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import NavBar from "../navbar/NavBar.jsx";
+import Navbar from "../navbar/Navbar.jsx";
 import LogoutButton from "../logoutButton/LogoutButton.jsx";
 import CartModal from "../cart/CartModal.jsx";
 import { IoSearchOutline } from "react-icons/io5";
@@ -163,7 +163,7 @@ function Header() {
       </section>
       <section className={styles.header_botton}>
         <section className={styles.header_botton_navbar}>
-          <NavBar />
+          <Navbar />
         </section>
       </section>
     </section>
