@@ -5,7 +5,7 @@ import { usePlaceOrder } from "../../hooks/usePlaceOrder.jsx";
 import { validateRut } from "@fdograph/rut-utilities";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./PurchaseDetail.module.css";
-import CartItem from "../../components/CartItem/CartItem.jsx";
+import CartItem from "../../components/cartItem/CartItem.jsx";
 import { FaHome, FaStore } from "react-icons/fa";
 import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 
