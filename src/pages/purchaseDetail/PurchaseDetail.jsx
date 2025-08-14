@@ -9,6 +9,7 @@ import CartItem from "../../components/cartItem/CartItem.jsx";
 import { FaHome, FaStore } from "react-icons/fa";
 import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 import { useToast } from "../../context/ToastContext.jsx";
+import formatPrice from "../../utils/formatPrice.js";
 
 const PurchaseDetail = () => {
   const { user, loadingUser } = useAuth();
@@ -413,9 +414,9 @@ const PurchaseDetail = () => {
           ))}
 
           <div className={styles.total}>
-            <p>Subtotal: ${total}</p>
+            <p>Subtotal: {formatPrice(total)}</p>
             <p>Envío: $0</p>
-            <strong>Total: ${total}</strong>
+            <strong>Total: {formatPrice(total)}</strong>
           </div>
         </div>
       </div>
