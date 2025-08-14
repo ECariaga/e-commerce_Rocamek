@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import formatPrice from "../../utils/formatPrice.js";
 import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
+import { useToast } from "../../context/ToastContext.jsx";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -17,7 +18,8 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { addToCart } = useCart();
+  const { cartItems, addToCart } = useCart();
+  const { showToast } = useToast(); // Para mostrar notificaciones
 
   const sliderSettings = {
     dots: true,
@@ -59,7 +61,35 @@ const ProductDetail = () => {
   }, [isMobile, product]);
 
   const handleAddToCart = () => {
+    const existingItem = cartItems.find((item) => item.id === product.id);
+    const quantityInCart = existingItem ? existingItem.quantity : 0;
+    const availableStock = product?.stock - quantityInCart;
+
+    if (availableStock <= 0) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return showToast({
+        title: "Producto sin stock",
+        message: "Este producto ya alcanzó el máximo disponible en tu carrito.",
+        variant: "warning",
+      });
+    }
+    if (quantity > availableStock) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return showToast({
+        title: "Cantidad excedida",
+        message: `Solo puedes agregar ${availableStock} unidad(es) de este producto.`,
+        variant: "warning",
+      });
+    }
+
     addToCart(product, quantity);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return showToast({
+      title: "Producto agregado al carrito",
+      message: "",
+      variant: "success",
+    });
   };
 
   if (loading) return <SpinnerLoader />;
