@@ -1,21 +1,28 @@
 import { db } from "../firebase/config.js";
-import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+import { serverTimestamp, addDoc, collection } from "firebase/firestore";
 
 export function usePlaceOrder() {
-  const placeOrder = async (uid, items, total) => {
-    if (!uid || items.legth === 0) throw new Error("Orden inválida");
+  const placeOrder = async (
+    uid,
+    items,
+    total,
+    customerData,
+    deliveryMethod
+  ) => {
+    if (items.length === 0) throw new Error("Orden inválida");
 
     const order = {
+      uid: uid || "invitado",
       items,
       total,
+      customerData,
+      deliveryMethod,
       status: "Pendiente",
       createdAt: serverTimestamp(),
       deliveredAt: null,
     };
 
-    //const orderRef = collection(db, "users", uid, "orders");
-    await setDoc(doc(db, "orders", uid), { order });
-    //await addDoc(orderRef, order);
+    await addDoc(collection(db, "orders"), order);
   };
   return { placeOrder };
 }

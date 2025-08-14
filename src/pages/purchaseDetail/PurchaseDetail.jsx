@@ -8,12 +8,16 @@ import styles from "./PurchaseDetail.module.css";
 import CartItem from "../../components/cartItem/CartItem.jsx";
 import { FaHome, FaStore } from "react-icons/fa";
 import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
+import { useToast } from "../../context/ToastContext.jsx";
 
 const PurchaseDetail = () => {
   const { user, loadingUser } = useAuth();
   const { cartItems, clearCart } = useCart();
   const { placeOrder } = usePlaceOrder();
   const navigate = useNavigate();
+  const { showToast } = useToast(); // Para mostrar notificaciones
+
+  const [deliveryMethod, setDeliveryMethod] = useState("home");
 
   const [cardNumber, setCardNumber] = useState("");
   const [cardNumberError, setCardNumberError] = useState(null);
@@ -28,6 +32,13 @@ const PurchaseDetail = () => {
 
   const [quotas, setQuotas] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [address, setAddress] = useState("");
+  const [commune, setCommune] = useState("");
+  const [region, setRegion] = useState("");
 
   const total = cartItems.reduce((acc, item) => {
     const price = item.discountPrice ?? item.price; //Usa el valor de la izquierda si no es null ni undefined, de lo contrario usa el de la derecha.
@@ -79,24 +90,58 @@ const PurchaseDetail = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!user) return alert("Debes iniciar sesión para realizar una compra");
+    // Validar datos personales si es invitado
+    if (!user) {
+      if (!name || !lastName || !address || !commune || !region) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return showToast({
+          title: "Datos incompletos",
+          message: "Por favor completa tus datos personales para continuar.",
+          variant: "warning",
+        });
+      }
+    }
+
+    //Validar campos de tarjeta
     if (
       cardNumberError ||
       expiryError ||
       cvvError ||
       cardHolderError ||
       rutError
-    )
-      return alert("Por favor, completa correctamente los campos de pago");
+    ) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return showToast({
+        title: "Datos incompletos",
+        message: "Por favor, completa correctamente los campos de pago.",
+        variant: "warning",
+      });
+    }
 
     setLoading(true);
 
     try {
       //Simular pago
-      await new Promise((res) => setTimeout(res, 2000)); //Esperar 2 segundos simulando el timepo de espera de un pago real
+      await new Promise((res) => setTimeout(res, 2000)); //Esperar 2 segundos simulando el tiempo de espera de un pago real
+
+      //Datos del cliente (usuario o invitado)
+      const customerData = user || {
+        name,
+        email,
+        lastName,
+        address,
+        commune,
+        region,
+      };
 
       //Si fue exitoso el pago
-      await placeOrder(user.uid, cartItems, total);
+      await placeOrder(
+        user?.uid,
+        cartItems,
+        total,
+        customerData,
+        deliveryMethod
+      );
       clearCart(); //Limpiar el carrito después de la compra
       navigate("/payment-message?status=success");
     } catch (error) {
@@ -115,8 +160,24 @@ const PurchaseDetail = () => {
     <div className={styles.checkoutContainer}>
       <div className={styles.checkoutLeft}>
         <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Cuenta</h3>
-          <p>{user.email}</p>
+          {user?.email == null ? (
+            <div>
+              <h3 className={styles.sectionTitle}>Contacto</h3>
+              <input
+                type="email"
+                className={styles.cardInput}
+                placeholder="Correo electrónico"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+          ) : (
+            <div>
+              <h3 className={styles.sectionTitle}>Cuenta</h3>
+              <p>{user.email}</p>
+            </div>
+          )}
           <hr />
         </section>
 
@@ -124,22 +185,42 @@ const PurchaseDetail = () => {
           <h3 className={styles.sectionTitle}>Elige la forma de entrega</h3>
           <div className={styles.option}>
             <div className={styles.deliveryOption}>
-              <input type="radio" name="delivery" id="home" checked />
+              <input
+                type="radio"
+                name="delivery"
+                id="home"
+                value="home"
+                checked={deliveryMethod === "home"}
+                onChange={(e) => setDeliveryMethod(e.target.value)}
+              />
               <label htmlFor="home">
                 <FaHome style={{ marginRight: "8px" }} />
                 <strong>Envío a domicilio</strong>
               </label>
               <div className={styles.address}>
-                <p> {user.address || "No se ha registrado una dirección"}</p>
-                <Link to="/my-profile" className={styles.editLink}>
-                  Modificar direción actual
-                </Link>
+                {user?.address ? (
+                  <div>
+                    <p>{user.address}</p>
+                    <Link to="/my-profile" className={styles.editLink}>
+                      Modificar direción actual
+                    </Link>
+                  </div>
+                ) : (
+                  <p>No se ha registrado una dirección</p>
+                )}
               </div>
             </div>
           </div>
           <div className={styles.option}>
             <div className={styles.deliveryOption}>
-              <input type="radio" name="delivery" id="store" />
+              <input
+                type="radio"
+                name="delivery"
+                id="store"
+                value="store"
+                checked={deliveryMethod === "store"}
+                onChange={(e) => setDeliveryMethod(e.target.value)}
+              />
               <label htmlFor="store">
                 <FaStore style={{ marginRight: "8px" }} />
                 <strong>Retiro en tienda</strong>
@@ -150,6 +231,54 @@ const PurchaseDetail = () => {
             </div>
           </div>
         </section>
+        {!user && (
+          <section className={styles.section}>
+            <h3 className={styles.sectionTitle}>Datos personales</h3>
+            <form className={styles.personalForm}>
+              <input
+                type="text"
+                placeholder="Nombre"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className={styles.cardInput}
+              />
+              <input
+                type="text"
+                placeholder="Apellido"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+                className={styles.cardInput}
+              />
+              <input
+                type="text"
+                placeholder="Dirección"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+                className={styles.cardInput}
+              />
+              <input
+                type="text"
+                placeholder="Comuna"
+                value={commune}
+                onChange={(e) => setCommune(e.target.value)}
+                required
+                className={styles.cardInput}
+              />
+              <input
+                type="text"
+                placeholder="Región"
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+                required
+                className={styles.cardInput}
+              />
+            </form>
+            <hr />
+          </section>
+        )}
 
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Pago con tarjeta</h3>
