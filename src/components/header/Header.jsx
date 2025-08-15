@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext.jsx";
 import { useAuth } from "../../context/AuthContext.jsx";
-//import useProducts from "../../hooks/useProducts";
+import Logo from "../../assets/images/Logotipo Rocamek sin fondo.png";
 
 function Header() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
@@ -61,7 +61,7 @@ function Header() {
       <section className={styles.header_top}>
         <section className={styles.header_top_logo}>
           <Link to={"/"} className={styles.header_logo}>
-            ROCAMEK
+            <img src={Logo} alt="Logo Rocamek" />
           </Link>
         </section>
         <section className={styles.header_top_search}>
@@ -113,7 +113,10 @@ function Header() {
                     className={styles.link}
                     style={{ gap: "5px" }}
                   >
-                    <HiOutlineUser className={styles.icon} />
+                    <Link to={"/login"} className={styles.loginIcon}>
+                      <HiOutlineUser className={styles.icon} />
+                    </Link>
+
                     {/* icono de usuario */}
                     {user ? (
                       <div>

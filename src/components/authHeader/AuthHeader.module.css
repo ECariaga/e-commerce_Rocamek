@@ -4,30 +4,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 20px;
+  padding: 50px 40px;
 }
 
 .containerLogo {
   display: flex;
   align-items: center;
 }
-.headerLogo {
-  color: #fff;
-  text-decoration: none;
-  font-family: "sansation-light";
-  font-size: 40px;
+.headerLogo img {
+  width: 80px;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-  .headerLogo {
-    font-size: 30px;
+  .headerLogo img {
+    width: 60px;
   }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
-  .headerLogo {
-    font-size: 25px;
+  .header {
+    padding: 50px 20px;
+  }
+  .headerLogo img {
+    width: 50px;
   }
 }
