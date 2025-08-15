@@ -1,34 +1,37 @@
-import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from "./Testimonials.module.css"; // Archivo de estilos
+import styles from "./Testimonials.module.css";
+import mujer1 from "../../assets/images/Mujer.jpg";
+import hombre1 from "../../assets/images/hombre-1.jpg";
+import hombre2 from "../../assets/images/hombre-2.jpg";
+import mujer2 from "../../assets/images/Mujer-2.png";
 
 const testimonials = [
   {
     name: "Tatiana Jiménez",
-    image: "./src/assets/images/Mujer.jpg",
+    image: mujer1,
     rating: 5,
     review:
       "El cuchillo de supervivencia superó mis expectativas. Viene afilado, con funda resistente y un agarre que no resbala. Lo probé cortando cuerda, madera y hasta para preparar comida en el campamento.",
   },
   {
     name: "Cristóbal Fuertes",
-    image: "./src/assets/images/hombre-1.jpg",
+    image: hombre1,
     rating: 4,
     review:
       "Compré una mochila impermeable para mis excursiones en kayak. Aguantó perfectamente bajo lluvia intensa y hasta una caída al agua. Único detalle: el cierre podría ser un poco más suave, pero cumple su función al 100%.",
   },
   {
     name: "Enrique Moran",
-    image: "./src/assets/images/hombre-2.jpg",
+    image: hombre2,
     rating: 4,
     review:
       "La botella térmica mantiene el café caliente por horas, incluso en plena caminata invernal. Es resistente y fácil de limpiar. Lo único que cambiaría es que tuviera un sistema de apertura más rápido para beber sobre la marcha.",
   },
   {
     name: "María González",
-    image: "./src/assets/images/Mujer-2.png",
+    image: mujer2,
     rating: 5,
     review:
       "La pulsera paracord es una maravilla. La usé para improvisar una cuerda en plena ruta de montaña y me salvó de un buen apuro. Además, es ligera y se ve genial como accesorio.",

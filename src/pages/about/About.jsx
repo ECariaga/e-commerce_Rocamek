@@ -1,4 +1,6 @@
 import styles from "./About.module.css";
+import misionImage from "../../assets/images/mision-image.jpg";
+import visionImage from "../../assets/images/vision-image.jpg";
 
 const About = () => {
   return (
@@ -61,14 +63,14 @@ const About = () => {
             </div>
             <img
               className={styles.misionImg}
-              src="./src/assets/images/mision-image.jpg"
+              src={misionImage}
               alt="Imagen de la misión"
             />
           </section>
           <section className={styles.visionSection}>
             <img
               className={styles.visionImg}
-              src="./src/assets/images/vision-image.jpg"
+              src={visionImage}
               alt="Imagen de la vision"
             />
             <div className={styles.visionContent}>

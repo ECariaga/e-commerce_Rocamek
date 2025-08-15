@@ -14,6 +14,7 @@ import { CategoriesContext } from "../../context/CategoriesContext.jsx";
 import { useLocation } from "react-router-dom";
 import { useToast } from "../../context/ToastContext.jsx";
 import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
+import aboutImage from "../../assets/images/home-aboutImage.jpg";
 
 const settings = {
   className: "center",
@@ -191,7 +192,7 @@ function Home() {
           <section className={styles.aboutSection}>
             <img
               className={styles.aboutImg}
-              src="./src/assets/images/home-aboutImage.jpg"
+              src={aboutImage}
               alt="Imagen sobre nosotros"
             />
             <div className={styles.aboutContent}>

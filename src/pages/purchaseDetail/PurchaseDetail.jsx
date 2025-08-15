@@ -10,6 +10,9 @@ import { FaHome, FaStore } from "react-icons/fa";
 import SpinnerLoader from "../../components/spinnerLoader/SpinnerLoader.jsx";
 import { useToast } from "../../context/ToastContext.jsx";
 import formatPrice from "../../utils/formatPrice.js";
+import visa from "../../assets/images/visa.svg";
+import mastercard from "../../assets/images/mastercard.svg";
+import amex from "../../assets/images/amex.svg";
 
 const PurchaseDetail = () => {
   const { user, loadingUser } = useAuth();
@@ -286,9 +289,9 @@ const PurchaseDetail = () => {
 
           {/* Imágenes de tarjetas aceptadas */}
           <div className={styles.cardLogos}>
-            <img src="/src/assets/images/visa.svg" alt="Visa" />
-            <img src="/src/assets/images/mastercard.svg" alt="Mastercard" />
-            <img src="/src/assets/images/amex.svg" alt="American Express" />
+            <img src={visa} alt="Visa" />
+            <img src={mastercard} alt="Mastercard" />
+            <img src={amex} alt="American Express" />
             {/* Agrega más si quieres */}
           </div>
 
