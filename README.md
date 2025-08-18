@@ -25,5 +25,5 @@ Aplicación web especializada en la venta de artículos de supervivencia. Permit
 - **Filtros dinámicos:** Organización de los artículos por categorías.
 - **Diseño interactivo:** Navegación intuitiva y fluida.
 
-## Nota:
+### Nota:
 El proyecto actualmente solo se encuentra terminado para las vistas del **cliente**. En próximas versiones se incorporarán las vistas para el administrador.
