@@ -1,12 +1,29 @@
-# React + Vite
+# Ecommerce - Rocamek
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![Firebase](https://img.shields.io/badge/Firebase-Backend-orange?logo=firebase)
+![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-yellow)
+![Licencia](https://img.shields.io/badge/Licencia-MIT-green)  
 
-Currently, two official plugins are available:
+Aplicación web especializada en la venta de artículos de supervivencia. Permite a los usuarios:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Explorar productos disponibles.
+- Ver el detalle de cada producto.
+- Agregar productos al carrito y conservar la selección incluso después de cerrar sesión.
+- Crear una cuenta y gestionar su perfil.
+- Filtrar productos por categoría para una búsqueda más eficiente.
 
-## Expanding the ESLint configuration
+## Tecnologías utilizadas
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React.js** – Interfaz de usuario rápida y modular.
+- **Firebase** – Backend para autenticación, base de datos y persistencia de datos.
+
+## Características principales
+
+- **Carrito persistente:** Los productos añadidos permanecen guardados aun cuando el usuario cierra sesión.
+- **Autenticación de usuarios:** Registro, inicio y cierre de sesión seguros.
+- **Filtros dinámicos:** Organización de los artículos por categorías.
+- **Diseño interactivo:** Navegación intuitiva y fluida.
+
+## Nota:
+El proyecto actualmente solo se encuentra terminado para las vistas del **cliente**. En próximas versiones se incorporarán las vistas para el administrador.
